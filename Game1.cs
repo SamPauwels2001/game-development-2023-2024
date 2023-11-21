@@ -9,6 +9,9 @@ namespace GameDevProject
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        Texture2D aliceTexture;
+        Alice alice;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -28,6 +31,15 @@ namespace GameDevProject
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
+            aliceTexture = Content.Load<Texture2D>("AliceSprite");
+
+            InitializeGameObjects();
+        }
+
+        private void InitializeGameObjects()
+        {
+            alice = new Alice(aliceTexture);
         }
 
         protected override void Update(GameTime gameTime)
@@ -37,6 +49,8 @@ namespace GameDevProject
 
             // TODO: Add your update logic here
 
+            alice.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -45,6 +59,10 @@ namespace GameDevProject
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+
+            _spriteBatch.Begin();
+            alice.Draw(_spriteBatch);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
