@@ -17,7 +17,7 @@ namespace GameDevProject
         {
             aliceTexture = texture;
             aliceAnimation = new Animation.Animation();
-            //aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(0, 0, 76, 134)));
+            aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(0, 0, 76, 134)));
             aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(76, 0, 76, 134)));
             aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(152, 0, 76, 134)));
 
