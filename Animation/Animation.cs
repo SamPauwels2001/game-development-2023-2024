@@ -16,6 +16,8 @@ namespace GameDevProject.Animation
         private int counter;
         private double secondCounter = 0;
 
+        //private double frameMovement = 0;
+
 
         public Animation()
         {
@@ -33,6 +35,13 @@ namespace GameDevProject.Animation
             CurrentFrame = frames[counter];
             secondCounter += gameTime.ElapsedGameTime.TotalSeconds;
             int fps = 5;
+
+            //frameMovement += CurrentFrame.SourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds;
+            /* if (frameMovement >= CurrentFrame.SourceRectangle.Width)
+            {
+                counter++;
+                frameMovement = 0;
+            } */
 
             if (secondCounter >= 1d / fps)
             {
