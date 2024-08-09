@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using GameDevProject.Input;
 
 namespace GameDevProject
 {
@@ -66,6 +67,8 @@ namespace GameDevProject
             _spriteBatch.End();
 
             base.Draw(gameTime);
-        }
+        }       
+
+
     }
 }
