@@ -10,22 +10,24 @@ class KeyboardReader : IInputReader
     {
         KeyboardState state = Keyboard.GetState();
         Vector2 direction = Vector2.Zero;
-        if (state.IsKeyDown(Keys.Left))
+
+        if (state.IsKeyDown(Keys.A))
         {
             direction.X -= 1;
         }
-        if (state.IsKeyDown(Keys.Right))
+        if (state.IsKeyDown(Keys.D))
         {
             direction.X += 1;
         }
-        if (state.IsKeyDown(Keys.Up))
+        if (state.IsKeyDown(Keys.W))
         {
             direction.Y -= 1;
         }
-        if (state.IsKeyDown(Keys.Down))
+        if (state.IsKeyDown(Keys.S))
         {
             direction.Y += 1;
         }
+
         return direction;
     }
 }
