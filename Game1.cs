@@ -18,6 +18,12 @@ namespace GameDevProject
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            //resolution
+            _graphics.PreferredBackBufferWidth = 2560;
+            _graphics.PreferredBackBufferHeight = 1440;
+
+            _graphics.ApplyChanges();
         }
 
         protected override void Initialize()
@@ -40,7 +46,10 @@ namespace GameDevProject
 
         private void InitializeGameObjects()
         {
-            alice = new Alice(aliceTexture, new KeyboardReader());
+            int screenWidth = _graphics.PreferredBackBufferWidth;
+            int screenHeight = _graphics.PreferredBackBufferHeight;
+
+            alice = new Alice(aliceTexture, new KeyboardReader(), screenWidth, screenHeight);
         }
 
         protected override void Update(GameTime gameTime)

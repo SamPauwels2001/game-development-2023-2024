@@ -21,13 +21,16 @@ namespace GameDevProject
         private Vector2 acceleration;
         private SpriteEffects spriteEffect;
         private IInputReader inputReader;
+        private int screenWidth;
+        private int screenHeight;
 
-
-
-        public Alice(Texture2D texture, IInputReader inputReader)
+        public Alice(Texture2D texture, IInputReader inputReader, int screenWidth, int screenHeight)
         {
             aliceTexture = texture;
             this.inputReader = inputReader;
+            this.screenWidth = screenWidth;
+            this.screenHeight = screenHeight;
+
             aliceAnimation = new Animation.Animation();
             //aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(0, 0, 76, 134)));
             aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(76, 0, 76, 134)));
@@ -40,8 +43,8 @@ namespace GameDevProject
 
         public void Update(GameTime gameTime)
         {
-            position.X = MathHelper.Clamp(position.X, 0, 800 - aliceAnimation.CurrentFrame.SourceRectangle.Width);
-            position.Y = MathHelper.Clamp(position.Y, 0, 480 - aliceAnimation.CurrentFrame.SourceRectangle.Height);
+            position.X = MathHelper.Clamp(position.X, 0, screenWidth - aliceAnimation.CurrentFrame.SourceRectangle.Width);
+            position.Y = MathHelper.Clamp(position.Y, 0, screenHeight - aliceAnimation.CurrentFrame.SourceRectangle.Height);
 
             Move();
             aliceAnimation.Update(gameTime);            
