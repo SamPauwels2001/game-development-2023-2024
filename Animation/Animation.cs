@@ -15,6 +15,7 @@ namespace GameDevProject.Animation
 
         private int counter;
         private double secondCounter = 0;
+        private int fps = 5;
 
         //private double frameMovement = 0;
 
@@ -22,19 +23,23 @@ namespace GameDevProject.Animation
         public Animation()
         {
             frames = new List<AnimationFrame>();
+            counter = 0;
         }
 
         public void AddFrame(AnimationFrame animationFrame)
         {
             frames.Add(animationFrame);
-            CurrentFrame = frames[0];
+            if (frames.Count == 1)
+            {
+                CurrentFrame = frames[0];
+            }
         }
 
         public void Update(GameTime gameTime)
         {
-            CurrentFrame = frames[counter];
+            if (frames.Count == 0) return;
+
             secondCounter += gameTime.ElapsedGameTime.TotalSeconds;
-            int fps = 5;
 
             //frameMovement += CurrentFrame.SourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds;
             /* if (frameMovement >= CurrentFrame.SourceRectangle.Width)
@@ -53,6 +58,8 @@ namespace GameDevProject.Animation
             {
                 counter = 0;
             }
+
+            CurrentFrame = frames[counter];
         }
 
     }

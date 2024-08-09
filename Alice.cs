@@ -23,6 +23,7 @@ namespace GameDevProject
         private IInputReader inputReader;
         private int screenWidth;
         private int screenHeight;
+        private bool isMoving;
 
         public Alice(Texture2D texture, IInputReader inputReader, int screenWidth, int screenHeight)
         {
@@ -31,10 +32,16 @@ namespace GameDevProject
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
 
+            // Initialize animation
             aliceAnimation = new Animation.Animation();
+
+            //standing still
             //aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(0, 0, 76, 134)));
-            aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(76, 0, 76, 134)));
-            aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(152, 0, 76, 134)));
+            //walking forward
+            //aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(76, 0, 76, 134)));
+            //aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(152, 0, 76, 134)));
+
+
             position = new Vector2(0, 0);
             speed = new Vector2(1, 1);
             acceleration = new Vector2(0.1f, 0.1f);
@@ -43,11 +50,29 @@ namespace GameDevProject
 
         public void Update(GameTime gameTime)
         {
+            // Determine if Alice is moving
+            Vector2 direction = inputReader.ReadInput();
+            isMoving = direction.LengthSquared() > 0;
+
+            // Set animation based on movement state
+            if (isMoving)
+            {                
+                aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(76, 0, 76, 134)));
+                aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(152, 0, 76, 134)));
+            }
+            else
+            {
+                // Set frame for standing still
+                aliceAnimation = new Animation.Animation();
+                aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(0, 0, 76, 134)));
+            }
+
             position.X = MathHelper.Clamp(position.X, 0, screenWidth - aliceAnimation.CurrentFrame.SourceRectangle.Width);
             position.Y = MathHelper.Clamp(position.Y, 0, screenHeight - aliceAnimation.CurrentFrame.SourceRectangle.Height);
 
-            Move();
-            aliceAnimation.Update(gameTime);            
+            aliceAnimation.Update(gameTime);
+
+            Move();           
         }
 
         
