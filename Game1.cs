@@ -39,7 +39,7 @@ namespace GameDevProject
 
         private void InitializeGameObjects()
         {
-            alice = new Alice(aliceTexture);
+            alice = new Alice(aliceTexture, new KeyboardReader());
         }
 
         protected override void Update(GameTime gameTime)
