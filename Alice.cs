@@ -40,17 +40,14 @@ namespace GameDevProject
 
         public void Update(GameTime gameTime)
         {
-            var direction = inputReader.ReadInput();
-            direction *= speed;
-            position += direction;
-
             position.X = MathHelper.Clamp(position.X, 0, 800 - aliceAnimation.CurrentFrame.SourceRectangle.Width);
             position.Y = MathHelper.Clamp(position.Y, 0, 480 - aliceAnimation.CurrentFrame.SourceRectangle.Height);
 
+            Move();
             aliceAnimation.Update(gameTime);            
         }
 
-        /*
+        
         private Vector2 Limit(Vector2 v, float max)
         {
             if (v.Length() > max)
@@ -60,30 +57,18 @@ namespace GameDevProject
                 v.Y *= ratio;
             }
             return v;
-        } */
+        } 
 
 
-        /*private void Move()
+        private void Move()
         {
-            position += speed;
+            var direction = inputReader.ReadInput();
+            direction *= speed;
+            position += direction;
             speed += acceleration;
-            float maxSpeed = 6;
-            speed = Limit(speed, maxSpeed);
-            if (position.X + speed.X > 800 - 70 || position.X + speed.X < 0)
-            {
-                speed = new Vector2
-                (speed.X < 0 ? 1 : -1, speed.Y);
-                acceleration.X *= -1;
-            }
-            if (position.Y + speed.Y > 480 -125 || position.Y + speed.Y < 0)
-            {
-                speed = new Vector2
-                (speed.X, speed.Y < 0 ? 1 : -1);
-                acceleration.Y *= -1;
-
-            }
-
-        }*/
+            float maxSpeed = 10;
+            speed = Limit(speed, maxSpeed);          
+        }
 
 
         public void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
