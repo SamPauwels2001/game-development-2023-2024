@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameDevProject.Interfaces
 {
-    internal interface IGameObject
+    public interface IGameObject
     {
         void Update(GameTime gameTime);
         void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch);
