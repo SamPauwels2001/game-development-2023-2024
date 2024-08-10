@@ -23,8 +23,8 @@ namespace GameDevProject
             IsMouseVisible = true;
 
             //resolution
-            _graphics.PreferredBackBufferWidth = 2560;
-            _graphics.PreferredBackBufferHeight = 1440;
+            _graphics.PreferredBackBufferWidth = 1920;
+            _graphics.PreferredBackBufferHeight = 1080;
 
             _graphics.ApplyChanges();
         }
@@ -98,10 +98,11 @@ namespace GameDevProject
             base.Draw(gameTime);
         }
 
+        /*
         private void LoadLevel(int levelNumber)
         {
             // Logic to load the selected level
-        }
+        } */
 
 
     }

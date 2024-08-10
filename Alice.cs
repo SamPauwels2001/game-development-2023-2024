@@ -35,14 +35,11 @@ namespace GameDevProject
             // Initialize animation
             aliceAnimation = new Animation.Animation();
 
-            //standing still
-            //aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(0, 0, 76, 134)));
-            //walking forward
-            //aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(76, 0, 76, 134)));
-            //aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(152, 0, 76, 134)));
+            // Initialize Alice position
+            int initialX = screenWidth / 2 - 38; // Half of the sprite width (76/2)
+            int initialY = screenHeight / 2 - 67; // Half of the sprite height (134/2)
+            position = new Vector2(initialX, initialY);
 
-
-            position = new Vector2(0, 0);
             speed = new Vector2(1, 1);
             acceleration = new Vector2(0.1f, 0.1f);
             spriteEffect = SpriteEffects.None;
