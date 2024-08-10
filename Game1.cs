@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using GameDevProject.Input;
+using System.Collections.Generic;
+using GameDevProject.Interfaces;
 
 namespace GameDevProject
 {
@@ -9,6 +11,7 @@ namespace GameDevProject
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        //private IGameScreen _currentScreen;
 
         Texture2D aliceTexture;
         Alice alice;
@@ -37,8 +40,18 @@ namespace GameDevProject
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            /*
+            //load main screen
+            var background = new Background(Content.Load<Texture2D>("background"));
 
+            var button1 = new Button(Content.Load<Texture2D>("button"), new Rectangle(100, 100, 200, 50), () => LoadLevel(1));
+            var button2 = new Button(Content.Load<Texture2D>("button"), new Rectangle(100, 200, 200, 50), () => LoadLevel(2));
+            var button3 = new Button(Content.Load<Texture2D>("button"), new Rectangle(100, 300, 200, 50), () => LoadLevel(3));
+
+            _currentScreen = new MainScreen(background, new List<Button> { button1 });
+            */
+
+            //load Alice
             aliceTexture = Content.Load<Texture2D>("AliceSprite");
 
             InitializeGameObjects();
@@ -58,6 +71,9 @@ namespace GameDevProject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            var mouseState = Mouse.GetState();
+            //_currentScreen.Update(gameTime, mouseState);
+
             // TODO: Add your update logic here
 
             alice.Update(gameTime);
@@ -71,12 +87,21 @@ namespace GameDevProject
 
             // TODO: Add your drawing code here
 
+            /*_spriteBatch.Begin();
+            _currentScreen.Draw(_spriteBatch);
+            _spriteBatch.End();*/
+
             _spriteBatch.Begin();
             alice.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
-        }       
+        }
+
+        private void LoadLevel(int levelNumber)
+        {
+            // Logic to load the selected level
+        }
 
 
     }
