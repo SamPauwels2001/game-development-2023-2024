@@ -17,4 +17,10 @@ class MouseReader : IInputReader
         return directionMouse;
     }
 
+    public bool IsLeftMouseClick()
+    {
+        MouseState state = Mouse.GetState();
+        return state.LeftButton == ButtonState.Pressed;
+    }
+
 }
