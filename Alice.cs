@@ -51,9 +51,6 @@ namespace GameDevProject
             speed = new Vector2(1, 1);
             acceleration = new Vector2(0.1f, 0.1f);
             spriteEffect = SpriteEffects.None;
-
-            // Initialize a basic attack
-            //attack = new BasicAttack(10, attackTexture, attackSound, position, 1.0f);
         }
 
         public void Update(GameTime gameTime)
@@ -82,17 +79,30 @@ namespace GameDevProject
 
             Move();
 
+            // Handle attack input
+            MouseReader mouseReader = inputReader as MouseReader;
+            if (mouseReader != null && mouseReader.IsLeftMouseClick() && (attack == null || !attack.IsActive))
+            {
+                // Create the attack towards the mouse position
+                Vector2 mousePosition = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+                Vector2 attackDirection = mousePosition - position;
+                attackDirection.Normalize();
+
+                attack = new BasicAttack(10, attackTexture, position, 2.0f);
+                attackDirection *= 10f; // Speed
+                attack.SetDirection(attackDirection);
+            }
+
             // Update attack
-            /*
-            if (attack.IsActive)
+            if (attack != null && attack.IsActive)
             {
                 attack.Update(gameTime);
-            }*/
+            }
         }
 
         public void Attack(IAttackable target)
         {
-            if (attack.IsActive)
+            if (attack != null && attack.IsActive)
             {
                 attack.ExecuteAttack(target);
             }
@@ -127,11 +137,11 @@ namespace GameDevProject
             //spriteBatch.Draw(aliceTexture, new Vector(0, 0), aliceAnimation.CurrentFrame.SourceRectangle, Color.White);
             spriteBatch.Draw(aliceTexture, position, aliceAnimation.CurrentFrame.SourceRectangle, Color.White, 0f, Vector2.Zero, 1f, spriteEffect, 0f);
 
-            //Draw attack
-            /*if (attack.IsActive)
+            // Draw attack
+            if (attack != null && attack.IsActive)
             {
                 attack.Draw(spriteBatch);
-            }*/
+            }
         }
 
     }
