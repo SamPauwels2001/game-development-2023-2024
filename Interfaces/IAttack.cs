@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GameDevProject.Interfaces;
 
 namespace GameDevProject.Interfaces
 {
-    public interface IAttack
+    public interface IAttack : IGameObject
     {
         void ExecuteAttack(IAttackable target);
     }
