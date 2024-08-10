@@ -11,5 +11,6 @@ namespace GameDevProject.Interfaces
     public interface IAttack : IGameObject
     {
         void ExecuteAttack(IAttackable target);
+        bool IsActive { get; }
     }
 }

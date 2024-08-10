@@ -25,12 +25,20 @@ namespace GameDevProject
         private int screenHeight;
         private bool isMoving;
 
+        // Attack-related properties
+        private IAttack attack;
+        private Texture2D attackTexture;
+        //private SoundEffect attackSound;
+
         public Alice(Texture2D texture, IInputReader inputReader, int screenWidth, int screenHeight)
         {
             aliceTexture = texture;
             this.inputReader = inputReader;
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
+
+            this.attackTexture = attackTexture;
+            //this.attackSound = attackSound;
 
             // Initialize animation
             aliceAnimation = new Animation.Animation();
@@ -43,6 +51,9 @@ namespace GameDevProject
             speed = new Vector2(1, 1);
             acceleration = new Vector2(0.1f, 0.1f);
             spriteEffect = SpriteEffects.None;
+
+            // Initialize a basic attack
+            //attack = new BasicAttack(10, attackTexture, attackSound, position, 1.0f);
         }
 
         public void Update(GameTime gameTime)
@@ -69,10 +80,25 @@ namespace GameDevProject
 
             aliceAnimation.Update(gameTime);
 
-            Move();           
+            Move();
+
+            // Update attack
+            /*
+            if (attack.IsActive)
+            {
+                attack.Update(gameTime);
+            }*/
         }
 
-        
+        public void Attack(IAttackable target)
+        {
+            if (attack.IsActive)
+            {
+                attack.ExecuteAttack(target);
+            }
+        }
+
+
         private Vector2 Limit(Vector2 v, float max)
         {
             if (v.Length() > max)
@@ -100,6 +126,12 @@ namespace GameDevProject
         {
             //spriteBatch.Draw(aliceTexture, new Vector(0, 0), aliceAnimation.CurrentFrame.SourceRectangle, Color.White);
             spriteBatch.Draw(aliceTexture, position, aliceAnimation.CurrentFrame.SourceRectangle, Color.White, 0f, Vector2.Zero, 1f, spriteEffect, 0f);
+
+            //Draw attack
+            /*if (attack.IsActive)
+            {
+                attack.Draw(spriteBatch);
+            }*/
         }
 
     }
