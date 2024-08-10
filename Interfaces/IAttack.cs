@@ -9,6 +9,6 @@ namespace GameDevProject.Interfaces
 {
     public interface IAttack
     {
-        void Attack(IAttackable target);
+        void ExecuteAttack(IAttackable target);
     }
 }
