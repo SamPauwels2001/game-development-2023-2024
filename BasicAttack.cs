@@ -12,6 +12,7 @@ public class BasicAttack : IAttack
     private bool isActive;
     private float duration;
     private float elapsedTime;
+    private Vector2 direction;
 
 
     public BasicAttack(int damage, Texture2D texture, /*SoundEffect soundEffect,*/ Vector2 position, float duration)
@@ -47,6 +48,13 @@ public class BasicAttack : IAttack
         {
             isActive = false;
         }
+
+        position += direction * 200 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+    }
+
+    public void SetDirection(Vector2 direction)
+    {
+        this.direction = direction;
     }
 
     public void Draw(SpriteBatch spriteBatch)
