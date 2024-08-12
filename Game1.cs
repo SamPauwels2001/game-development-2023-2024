@@ -14,6 +14,7 @@ namespace GameDevProject
         //private IGameScreen _currentScreen;
 
         Texture2D aliceTexture;
+        Texture2D attackTexture;
         Alice alice;
 
         public Game1()
@@ -25,7 +26,6 @@ namespace GameDevProject
             //resolution
             _graphics.PreferredBackBufferWidth = 1920;
             _graphics.PreferredBackBufferHeight = 1080;
-
             _graphics.ApplyChanges();
         }
 
@@ -51,8 +51,9 @@ namespace GameDevProject
             _currentScreen = new MainScreen(background, new List<Button> { button1 });
             */
 
-            //load Alice
+            //load sprites
             aliceTexture = Content.Load<Texture2D>("AliceSprite");
+            attackTexture = Content.Load<Texture2D>("AttackSprite");
 
             InitializeGameObjects();
         }
@@ -62,7 +63,8 @@ namespace GameDevProject
             int screenWidth = _graphics.PreferredBackBufferWidth;
             int screenHeight = _graphics.PreferredBackBufferHeight;
 
-            alice = new Alice(aliceTexture, new KeyboardReader(), screenWidth, screenHeight);
+            alice = new Alice(aliceTexture, new KeyboardReader(), new MouseReader(), screenWidth, screenHeight);
+            alice.SetAttackTexture(attackTexture);
         }
 
         protected override void Update(GameTime gameTime)
@@ -71,7 +73,7 @@ namespace GameDevProject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            var mouseState = Mouse.GetState();
+            //var mouseState = Mouse.GetState();
             //_currentScreen.Update(gameTime, mouseState);
 
             // TODO: Add your update logic here

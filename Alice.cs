@@ -20,7 +20,8 @@ namespace GameDevProject
         private Vector2 speed;
         private Vector2 acceleration;
         private SpriteEffects spriteEffect;
-        private IInputReader inputReader;
+        private IInputReader keyboardReader;
+        private IInputReader mouseReader;
         private int screenWidth;
         private int screenHeight;
         private bool isMoving;
@@ -30,15 +31,13 @@ namespace GameDevProject
         private Texture2D attackTexture;
         //private SoundEffect attackSound;
 
-        public Alice(Texture2D texture, IInputReader inputReader, int screenWidth, int screenHeight)
+        public Alice(Texture2D texture, IInputReader keyboardReader, IInputReader mouseReader, int screenWidth, int screenHeight)
         {
             aliceTexture = texture;
-            this.inputReader = inputReader;
+            this.keyboardReader = keyboardReader;
+            this.mouseReader = mouseReader;
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
-
-            this.attackTexture = attackTexture;
-            //this.attackSound = attackSound;
 
             // Initialize animation
             aliceAnimation = new Animation.Animation();
@@ -53,10 +52,16 @@ namespace GameDevProject
             spriteEffect = SpriteEffects.None;
         }
 
+        public void SetAttackTexture(Texture2D texture)
+        {
+            this.attackTexture = texture;
+            //this.attackSound = attackSound;
+        }
+
         public void Update(GameTime gameTime)
         {
             // Determine if Alice is moving
-            Vector2 direction = inputReader.ReadInput();
+            Vector2 direction = keyboardReader.ReadInput();
             isMoving = direction.LengthSquared() > 0;
 
             // Set animation based on movement state
@@ -80,16 +85,13 @@ namespace GameDevProject
             Move();
 
             // Handle attack input
-            MouseReader mouseReader = inputReader as MouseReader;
-            if (mouseReader != null && mouseReader.IsLeftMouseClick() && (attack == null || !attack.IsActive))
+            if (mouseReader is MouseReader mouse && mouse.IsLeftMouseClick() && (attack == null || !attack.IsActive))
             {
-                // Create the attack towards the mouse position
                 Vector2 mousePosition = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
                 Vector2 attackDirection = mousePosition - position;
                 attackDirection.Normalize();
 
                 attack = new BasicAttack(10, attackTexture, position, 2.0f);
-                attackDirection *= 10f; // Speed
                 attack.SetDirection(attackDirection);
             }
 
@@ -123,7 +125,7 @@ namespace GameDevProject
 
         private void Move()
         {
-            var direction = inputReader.ReadInput();
+            var direction = keyboardReader.ReadInput();
             direction *= speed;
             position += direction;
             speed += acceleration;
