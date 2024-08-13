@@ -63,8 +63,7 @@ namespace GameDevProject
             int screenWidth = _graphics.PreferredBackBufferWidth;
             int screenHeight = _graphics.PreferredBackBufferHeight;
 
-            alice = new Alice(aliceTexture, new KeyboardReader(), new MouseReader(), screenWidth, screenHeight);
-            alice.SetAttackTexture(attackTexture);
+            alice = new Alice(aliceTexture, attackTexture, new KeyboardReader(), new MouseReader(), screenWidth, screenHeight);
         }
 
         protected override void Update(GameTime gameTime)
