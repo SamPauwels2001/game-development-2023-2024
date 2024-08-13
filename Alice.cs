@@ -31,6 +31,8 @@ namespace GameDevProject
         private Texture2D attackTexture;
         //private SoundEffect attackSound;
         private float attackSpeed = 250f; // Default attack speed
+        private float attackCooldown = 0.2f;
+        private float lastAttackTime = 0f;
 
         public Alice(Texture2D texture, IInputReader keyboardReader, IInputReader mouseReader, int screenWidth, int screenHeight)
         {
@@ -87,7 +89,9 @@ namespace GameDevProject
             Move();
 
             // Handle attack input
-            if (mouseReader is MouseReader mouse && mouse.IsLeftMouseClick() && attacks.Count < 2) // attack amount limit
+            lastAttackTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (mouseReader is MouseReader mouse && mouse.IsLeftMouseClick() && attacks.Count < 2 && lastAttackTime >= attackCooldown)
             {
                 Vector2 mousePosition = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
                 Vector2 attackDirection = mousePosition - position;
@@ -96,6 +100,8 @@ namespace GameDevProject
                 var attack = new BasicAttack(10, attackTexture, position, 2.0f, attackSpeed);
                 attack.SetDirection(attackDirection);
                 attacks.Add(attack);
+
+                lastAttackTime = 0f;
             }
 
             // Update all active attacks
