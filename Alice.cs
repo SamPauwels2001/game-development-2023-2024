@@ -12,7 +12,7 @@ using GameDevProject.Input;
 
 namespace GameDevProject
 {
-    internal class Alice:IGameObject
+    internal class Alice : IGameObject
     {
         Texture2D aliceTexture;
         Animation.Animation aliceAnimation;
@@ -27,9 +27,10 @@ namespace GameDevProject
         private bool isMoving;
 
         // Attack-related properties
-        private IAttack attack;
+        private List<IAttack> attacks;
         private Texture2D attackTexture;
         //private SoundEffect attackSound;
+        private float attackSpeed = 250f; // Default attack speed
 
         public Alice(Texture2D texture, IInputReader keyboardReader, IInputReader mouseReader, int screenWidth, int screenHeight)
         {
@@ -50,6 +51,8 @@ namespace GameDevProject
             speed = new Vector2(1, 1);
             acceleration = new Vector2(0.1f, 0.1f);
             spriteEffect = SpriteEffects.None;
+
+            attacks = new List<IAttack>();
         }
 
         public void SetAttackTexture(Texture2D texture)
@@ -66,7 +69,7 @@ namespace GameDevProject
 
             // Set animation based on movement state
             if (isMoving)
-            {                
+            {
                 aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(76, 0, 76, 134)));
                 aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(152, 0, 76, 134)));
             }
@@ -81,35 +84,41 @@ namespace GameDevProject
             position.Y = MathHelper.Clamp(position.Y, 0, screenHeight - aliceAnimation.CurrentFrame.SourceRectangle.Height);
 
             aliceAnimation.Update(gameTime);
-
             Move();
 
             // Handle attack input
-            if (mouseReader is MouseReader mouse && mouse.IsLeftMouseClick() && (attack == null || !attack.IsActive))
+            if (mouseReader is MouseReader mouse && mouse.IsLeftMouseClick() && attacks.Count < 2) // attack amount limit
             {
                 Vector2 mousePosition = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
                 Vector2 attackDirection = mousePosition - position;
                 attackDirection.Normalize();
 
-                attack = new BasicAttack(10, attackTexture, position, 2.0f);
+                var attack = new BasicAttack(10, attackTexture, position, 2.0f, attackSpeed);
                 attack.SetDirection(attackDirection);
+                attacks.Add(attack);
             }
 
-            // Update attack
-            if (attack != null && attack.IsActive)
+            // Update all active attacks
+            for (int i = attacks.Count - 1; i >= 0; i--)
             {
-                attack.Update(gameTime);
+                attacks[i].Update(gameTime);
+                if (!attacks[i].IsActive)
+                {
+                    attacks.RemoveAt(i);
+                }
             }
         }
 
         public void Attack(IAttackable target)
         {
-            if (attack != null && attack.IsActive)
+            foreach (var attack in attacks)
             {
-                attack.ExecuteAttack(target);
+                if (attack.IsActive)
+                {
+                    attack.ExecuteAttack(target);
+                }
             }
         }
-
 
         private Vector2 Limit(Vector2 v, float max)
         {
@@ -120,8 +129,7 @@ namespace GameDevProject
                 v.Y *= ratio;
             }
             return v;
-        } 
-
+        }
 
         private void Move()
         {
@@ -130,21 +138,21 @@ namespace GameDevProject
             position += direction;
             speed += acceleration;
             float maxSpeed = 10;
-            speed = Limit(speed, maxSpeed);          
+            speed = Limit(speed, maxSpeed);
         }
 
-
-        public void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Draw(aliceTexture, new Vector(0, 0), aliceAnimation.CurrentFrame.SourceRectangle, Color.White);
             spriteBatch.Draw(aliceTexture, position, aliceAnimation.CurrentFrame.SourceRectangle, Color.White, 0f, Vector2.Zero, 1f, spriteEffect, 0f);
 
-            // Draw attack
-            if (attack != null && attack.IsActive)
+            // Draw all active attacks
+            foreach (var attack in attacks)
             {
-                attack.Draw(spriteBatch);
+                if (attack.IsActive)
+                {
+                    attack.Draw(spriteBatch);
+                }
             }
         }
-
     }
 }

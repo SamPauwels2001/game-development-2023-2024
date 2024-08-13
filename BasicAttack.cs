@@ -13,9 +13,11 @@ public class BasicAttack : IAttack
     private float duration;
     private float elapsedTime;
     private Vector2 direction;
+    public float AttackSpeed { get; set; }
+    public int AttackAmount { get; set; }
 
 
-    public BasicAttack(int damage, Texture2D texture, /*SoundEffect soundEffect,*/ Vector2 position, float duration)
+    public BasicAttack(int damage, Texture2D texture, /*SoundEffect soundEffect,*/ Vector2 position, float duration, float attackSpeed)
     {
         this.damage = damage;
         this.texture = texture;
@@ -24,6 +26,8 @@ public class BasicAttack : IAttack
         this.duration = duration;
         this.isActive = true;
         this.elapsedTime = 0f;
+        this.AttackSpeed = attackSpeed;
+        this.AttackAmount = 2;
     }
 
     public void ExecuteAttack(IAttackable target)
@@ -49,7 +53,7 @@ public class BasicAttack : IAttack
             isActive = false;
         }
 
-        position += direction * 200 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        position += direction * AttackSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
     }
 
     public void SetDirection(Vector2 direction)
