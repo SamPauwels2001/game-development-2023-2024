@@ -53,7 +53,7 @@ namespace GameDevProject
             Acceleration = new Vector2(0.1f, 0.1f);
             spriteEffect = SpriteEffects.None;
 
-            attackManager = new AttackManager(attackTexture, mouseReader);
+            attackManager = new AttackManager();
             movementManager = new MovementManager();
         }
 
@@ -83,7 +83,6 @@ namespace GameDevProject
 
             aliceAnimation.Update(gameTime);
             Move();
-            attackManager.Update(gameTime, Position);
         }        
 
         private void Move()

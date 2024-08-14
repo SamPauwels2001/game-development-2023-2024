@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using GameDevProject.Input;
 using System.Collections.Generic;
 using GameDevProject.Interfaces;
 
@@ -21,7 +19,7 @@ namespace GameDevProject.Managers
             for (int i = _attacks.Count - 1; i >= 0; i--)
             {
                 _attacks[i].Update(gameTime);
-                if (_attacks[i].!IsActive)
+                if (!_attacks[i].IsActive)
                 {
                     _attacks.RemoveAt(i);
                 }
@@ -37,3 +35,4 @@ namespace GameDevProject.Managers
         }
     }
 }
+

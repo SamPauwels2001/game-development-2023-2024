@@ -26,8 +26,8 @@ class MouseReader : IInputReader
     {
         MouseState state = Mouse.GetState();
         bool isSingleClick = previousLeftButtonState == ButtonState.Released &&
-                             currentState.LeftButton == ButtonState.Pressed;
-        previousLeftButtonState = currentState.LeftButton;
+                             state.LeftButton == ButtonState.Pressed;
+        previousLeftButtonState = state.LeftButton;
         return isSingleClick;
     }
 
