@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using GameDevProject.Interfaces;
 using Microsoft.Xna.Framework.Input;
 using GameDevProject.Input;
+using GameDevProject.Managers;
 
 namespace GameDevProject
 {
@@ -25,16 +26,9 @@ namespace GameDevProject
         private int screenWidth;
         private int screenHeight;
         private bool isMoving;
+        private AttackManager attackManager;
 
-        // Attack-related properties
-        private List<IAttack> attacks;
-        private Texture2D attackTexture;
-        //private SoundEffect attackSound;
-        private float attackSpeed = 250f; // Default attack speed
-        private float attackCooldown = 0.2f;
-        private float lastAttackTime = 0f;
-
-        public Alice(Texture2D texture, IInputReader keyboardReader, IInputReader mouseReader, int screenWidth, int screenHeight)
+        public Alice(Texture2D texture, Texture2D attackTexture, IInputReader keyboardReader, IInputReader mouseReader, int screenWidth, int screenHeight)
         {
             aliceTexture = texture;
             this.keyboardReader = keyboardReader;
@@ -54,13 +48,7 @@ namespace GameDevProject
             acceleration = new Vector2(0.1f, 0.1f);
             spriteEffect = SpriteEffects.None;
 
-            attacks = new List<IAttack>();
-        }
-
-        public void SetAttackTexture(Texture2D texture)
-        {
-            this.attackTexture = texture;
-            //this.attackSound = attackSound;
+            attackManager = new AttackManager(attackTexture, mouseReader);
         }
 
         public void Update(GameTime gameTime)
@@ -87,43 +75,7 @@ namespace GameDevProject
 
             aliceAnimation.Update(gameTime);
             Move();
-
-            // Handle attack input
-            lastAttackTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            if (mouseReader is MouseReader mouse && mouse.IsLeftMouseClick() && attacks.Count < 2 && lastAttackTime >= attackCooldown)
-            {
-                Vector2 mousePosition = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
-                Vector2 attackDirection = mousePosition - position;
-                attackDirection.Normalize();
-
-                var attack = new BasicAttack(10, attackTexture, position, 2.0f, attackSpeed);
-                attack.SetDirection(attackDirection);
-                attacks.Add(attack);
-
-                lastAttackTime = 0f;
-            }
-
-            // Update all active attacks
-            for (int i = attacks.Count - 1; i >= 0; i--)
-            {
-                attacks[i].Update(gameTime);
-                if (!attacks[i].IsActive)
-                {
-                    attacks.RemoveAt(i);
-                }
-            }
-        }
-
-        public void Attack(IAttackable target)
-        {
-            foreach (var attack in attacks)
-            {
-                if (attack.IsActive)
-                {
-                    attack.ExecuteAttack(target);
-                }
-            }
+            attackManager.Update(gameTime, position);
         }
 
         private Vector2 Limit(Vector2 v, float max)
@@ -158,14 +110,7 @@ namespace GameDevProject
         {
             spriteBatch.Draw(aliceTexture, position, aliceAnimation.CurrentFrame.SourceRectangle, Color.White, 0f, Vector2.Zero, 1f, spriteEffect, 0f);
 
-            // Draw all active attacks
-            foreach (var attack in attacks)
-            {
-                if (attack.IsActive)
-                {
-                    attack.Draw(spriteBatch);
-                }
-            }
+            attackManager.Draw(spriteBatch);
         }
     }
 }

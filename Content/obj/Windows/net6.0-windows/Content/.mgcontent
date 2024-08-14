@@ -6,12 +6,10 @@
   <SourceFiles>
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/AliceSprite.png</File>
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/AttackBubbleSprite.png</File>
-    <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/AttackSprite.png</File>
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/Button.png</File>
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/istockphoto-1223562152-1024x1024.jpg</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>button.png</File>
