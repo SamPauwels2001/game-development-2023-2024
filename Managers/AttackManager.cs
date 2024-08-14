@@ -29,11 +29,6 @@ namespace GameDevProject.Managers
 
             if (mouseReader is MouseReader mouse)
             {
-                // Debug: Check if the mouse click is being detected
-                if (mouse.IsLeftMouseClick())
-                {
-                    Console.WriteLine("Left Mouse Click detected.");
-                }
 
                 if (mouse.IsLeftMouseClick() && attacks.Count < 2 && lastAttackTime >= attackCooldown)
                 {
