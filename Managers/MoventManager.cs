@@ -10,20 +10,28 @@ class MovementManager
 {
     public void Move(IMovable movable)
     {
-        movable.Speed += movable.Acceleration;
-        float maxSpeed = 10;
-        movable.Speed = Limit(movable.Speed, maxSpeed);
-
         var direction = movable.KeyboardReader.ReadInput();
-        /*if (movable.InputReader.IsDestinationalInput)
+        if (direction != Vector2.Zero)
         {
-            direction -= movable.Position;
             direction.Normalize();
-        }*/
+        }
 
-        var distance = direction * movable.Speed;
+        //acceleration
+        float maxSpeed = 5;
+
+        if (direction.LengthSquared() > 0)
+        {
+            movable.Speed += movable.Acceleration;
+            movable.Speed = Limit(movable.Speed, maxSpeed);
+        }
+        else
+        {
+            //deceleration
+            movable.Speed *= 0.98f; 
+        }
 
         //update position
+        var distance = direction * movable.Speed;
         movable.Position += distance;
     }
 
@@ -40,3 +48,15 @@ class MovementManager
 
 }
 
+
+
+
+/*if (movable.InputReader.IsDestinationalInput)
+{
+    direction -= movable.Position;
+    direction.Normalize();
+}*/
+
+
+//var futurePosition = movable.Position + distance;
+//movable.Position = futurePosition;
