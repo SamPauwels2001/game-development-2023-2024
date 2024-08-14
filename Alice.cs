@@ -13,7 +13,7 @@ using GameDevProject.Managers;
 
 namespace GameDevProject
 {
-    internal class Alice : IGameObject, IMovable
+    internal class Alice : IGameObject, IMovable /*,IAttackable*/
     {
         Texture2D aliceTexture;
         Animation.Animation aliceAnimation;
@@ -21,6 +21,7 @@ namespace GameDevProject
 
         public Vector2 Position { get; set; }
         public Vector2 Speed { get; set; }
+        public float MaxSpeed { get; set; }
         public Vector2 Acceleration { get; set; }
 
         public IInputReader KeyboardReader { get; set; }
@@ -33,13 +34,13 @@ namespace GameDevProject
         private AttackManager attackManager;
         private MovementManager movementManager;
 
-        public Alice(Texture2D texture, Texture2D attackTexture, IInputReader keyboardReader, IInputReader mouseReader, int screenWidth, int screenHeight)
+        public Alice(Texture2D texture, Texture2D attackTexture, IInputReader keyboardReader, IInputReader mouseReader)
         {
             aliceTexture = texture;
             KeyboardReader = keyboardReader; // IMovable property
             this.mouseReader = mouseReader;
-            this.screenWidth = screenWidth;
-            this.screenHeight = screenHeight;
+            this.screenWidth = Game1.ScreenWidth;
+            this.screenHeight = Game1.ScreenHeight;
 
             // Initialize animation
             aliceAnimation = new Animation.Animation();
@@ -50,6 +51,7 @@ namespace GameDevProject
             Position = new Vector2(initialX, initialY);
 
             Speed = new Vector2(1, 1);
+            MaxSpeed = 8;
             Acceleration = new Vector2(0.1f, 0.1f);
             spriteEffect = SpriteEffects.None;
 

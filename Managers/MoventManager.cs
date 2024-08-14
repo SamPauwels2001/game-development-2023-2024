@@ -16,13 +16,11 @@ class MovementManager
             direction.Normalize();
         }
 
-        //acceleration
-        float maxSpeed = 8;
-
         if (direction.LengthSquared() > 0)
         {
+            //acceleration
             movable.Speed += movable.Acceleration;
-            movable.Speed = Limit(movable.Speed, maxSpeed);
+            movable.Speed = Limit(movable.Speed, movable.MaxSpeed);
         }
         else
         {

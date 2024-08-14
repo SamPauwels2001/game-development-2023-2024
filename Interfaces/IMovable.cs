@@ -11,6 +11,7 @@ interface IMovable
 {
     public Vector2 Position { get; set; }
     public Vector2 Speed { get; set; }
+    public float MaxSpeed { get; set; }
     public Vector2 Acceleration { get; set; }
     public IInputReader KeyboardReader { get; set; }
 }
