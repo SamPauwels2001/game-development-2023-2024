@@ -140,6 +140,13 @@ namespace GameDevProject
         private void Move()
         {
             var direction = keyboardReader.ReadInput();
+
+            /*if (inputReader.IsDestinationInput)
+            {
+                direction -= position;
+                direction.Normalize();
+            }*/
+
             direction *= speed;
             position += direction;
             speed += acceleration;

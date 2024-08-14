@@ -9,5 +9,7 @@ namespace GameDevProject.Input
     public interface IInputReader
     {
         Vector2 ReadInput();
-    }
+        public bool IsDestinationInput { get; }
+    }    
+
 }

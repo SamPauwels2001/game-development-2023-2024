@@ -6,10 +6,12 @@ using GameDevProject.Input;
 
 class KeyboardReader : IInputReader
 {
+    public bool IsDestinationInput => false;
+
     public Vector2 ReadInput()
     {
         KeyboardState state = Keyboard.GetState();
-        Vector2 direction = Vector2.Zero;
+        Vector2 direction = Vector2.Zero;        
 
         // Horizontal movement
         if (state.IsKeyDown(Keys.Left) || state.IsKeyDown(Keys.A) || state.IsKeyDown(Keys.Q))
