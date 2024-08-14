@@ -11,22 +11,19 @@ namespace GameDevProject
         protected Texture2D texture;
         protected Vector2 position;
         protected bool isActive;
-        protected float duration;
         protected float elapsedTime;
         protected Vector2 direction;
         public float AttackSpeed { get; set; }
         public int AttackAmount { get; set; }
 
-        public BasicAttack(int damage, Texture2D texture, Vector2 position, float duration, float attackSpeed)
+        public BasicAttack(int damage, Texture2D texture, Vector2 position, float attackSpeed)
         {
             this.damage = damage;
             this.texture = texture;
             this.position = position;
-            this.duration = duration;
             this.isActive = true;
             this.elapsedTime = 0f;
             this.AttackSpeed = attackSpeed;
-            this.AttackAmount = 2;
         }
 
         public virtual void ExecuteAttack(IAttackable target)
@@ -42,13 +39,13 @@ namespace GameDevProject
         {
             if (!isActive) return;
 
-            elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (elapsedTime >= duration)
+            position += direction * AttackSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (position.X < 0 || position.X > Game1.ScreenWidth || position.Y < 0 || position.Y > Game1.ScreenHeight)
             {
                 isActive = false;
             }
 
-            position += direction * AttackSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         public void SetDirection(Vector2 direction)

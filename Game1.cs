@@ -13,6 +13,9 @@ namespace GameDevProject
         private SpriteBatch _spriteBatch;
         //private IGameScreen _currentScreen;
 
+        public static int ScreenWidth { get; private set; }
+        public static int ScreenHeight { get; private set; }
+
         Texture2D aliceTexture;
         Texture2D attackTexture;
         Alice alice;
@@ -27,6 +30,9 @@ namespace GameDevProject
             _graphics.PreferredBackBufferWidth = 1920;
             _graphics.PreferredBackBufferHeight = 1080;
             _graphics.ApplyChanges();
+
+            ScreenWidth = _graphics.PreferredBackBufferWidth;
+            ScreenHeight = _graphics.PreferredBackBufferHeight;
         }
 
         protected override void Initialize()
@@ -60,10 +66,7 @@ namespace GameDevProject
 
         private void InitializeGameObjects()
         {
-            int screenWidth = _graphics.PreferredBackBufferWidth;
-            int screenHeight = _graphics.PreferredBackBufferHeight;
-
-            alice = new Alice(aliceTexture, attackTexture, new KeyboardReader(), new MouseReader(), screenWidth, screenHeight);
+            alice = new Alice(aliceTexture, attackTexture, new KeyboardReader(), new MouseReader(), ScreenWidth, ScreenHeight);
         }
 
         protected override void Update(GameTime gameTime)

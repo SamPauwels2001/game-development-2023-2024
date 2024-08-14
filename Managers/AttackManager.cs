@@ -29,21 +29,23 @@ namespace GameDevProject.Managers
 
             if (mouseReader is MouseReader mouse)
             {
-
-                if (mouse.IsLeftMouseClick() && attacks.Count < 2 && lastAttackTime >= attackCooldown)
+                if (mouse.IsLeftMouseClick() && lastAttackTime >= attackCooldown)
                 {
+                    Vector2 attackStartPosition = alicePosition + new Vector2(38, 67); // Center of Alice sprite
+
                     Vector2 mousePosition = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
-                    Vector2 attackDirection = mousePosition - alicePosition;
+                    Vector2 attackDirection = mousePosition - attackStartPosition;
                     attackDirection.Normalize();
 
-                    var attack = new BasicAttack(10, attackTexture, alicePosition, 2.0f, attackSpeed);
+                    var attack = new BasicAttack(10, attackTexture, attackStartPosition, attackSpeed);
                     attack.SetDirection(attackDirection);
                     attacks.Add(attack);
 
-                    lastAttackTime = 0f;
+                    lastAttackTime = 0f; // Reset cooldown timer
                 }
             }
 
+            // Update existing attacks
             for (int i = attacks.Count - 1; i >= 0; i--)
             {
                 attacks[i].Update(gameTime);

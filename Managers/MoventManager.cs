@@ -17,7 +17,7 @@ class MovementManager
         }
 
         //acceleration
-        float maxSpeed = 5;
+        float maxSpeed = 8;
 
         if (direction.LengthSquared() > 0)
         {
