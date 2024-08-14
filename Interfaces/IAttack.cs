@@ -14,6 +14,5 @@ namespace GameDevProject.Interfaces
         void SetDirection(Vector2 direction);
         bool IsActive { get; }
         float AttackSpeed { get; set; }
-        int AttackAmount { get; set; }
     }
 }

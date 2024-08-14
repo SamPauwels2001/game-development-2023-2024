@@ -15,6 +15,7 @@ namespace GameDevProject.Managers
         private float attackSpeed = 250f; // Default attack speed
         private float attackCooldown = 0.2f;
         private float lastAttackTime = 0f;
+        public int AttackAmount { get; set; } = 5;
 
         public AttackManager(Texture2D attackTexture, IInputReader mouseReader)
         {
@@ -29,7 +30,7 @@ namespace GameDevProject.Managers
 
             if (mouseReader is MouseReader mouse)
             {
-                if (mouse.IsLeftMouseClick() && lastAttackTime >= attackCooldown)
+                if (mouse.IsLeftMouseClick() && lastAttackTime >= attackCooldown && attacks.Count < AttackAmount)
                 {
                     Vector2 attackStartPosition = alicePosition + new Vector2(38, 67); // Center of Alice sprite
 

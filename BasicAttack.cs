@@ -14,7 +14,6 @@ namespace GameDevProject
         protected float elapsedTime;
         protected Vector2 direction;
         public float AttackSpeed { get; set; }
-        public int AttackAmount { get; set; }
 
         public BasicAttack(int damage, Texture2D texture, Vector2 position, float attackSpeed)
         {
