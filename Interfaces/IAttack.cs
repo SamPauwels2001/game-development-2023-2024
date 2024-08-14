@@ -10,9 +10,10 @@ namespace GameDevProject.Interfaces
 {
     public interface IAttack : IGameObject
     {
+        //IGameObject: update and draw
         void ExecuteAttack(IAttackable target);
         void SetDirection(Vector2 direction);
         bool IsActive { get; }
-        float AttackSpeed { get; set; }
+        //float AttackSpeed { get; set; }
     }
 }
