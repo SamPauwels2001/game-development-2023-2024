@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using GameDevProject.Input;
 using System.Collections.Generic;
 using GameDevProject.Interfaces;
+using GameDevProject;
 
 namespace GameDevProject
 {
@@ -11,7 +12,9 @@ namespace GameDevProject
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        //private IGameScreen _currentScreen;
+
+        private GameState currentGameState;
+        private Level currentLevel;
 
         public static int ScreenWidth { get; private set; }
         public static int ScreenHeight { get; private set; }
@@ -75,7 +78,30 @@ namespace GameDevProject
             _spriteBatch.End();
 
             base.Draw(gameTime);
-        }      
+        }
+
+        private void LoadLevel(GameState gameState)
+        {
+            switch (gameState)
+            {
+                case GameState.Level1:
+                    currentLevel = new Level1(this);
+                    break;
+                case GameState.Level2:
+                    //currentLevel = new Level2(this);
+                    break;
+                case GameState.Level3:
+                    //currentLevel = new Level3(this);
+                    break;
+            }
+
+            currentLevel?.LoadContent();
+        }
+
+        protected override void UnloadContent()
+        {            
+            currentLevel?.UnloadContent();
+        }
 
     }
 }
