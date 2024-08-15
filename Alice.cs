@@ -30,9 +30,10 @@ namespace GameDevProject
 
         private int screenWidth;
         private int screenHeight;
-        
+
+        private IAttackFactory _attackFactory;
         private AttackManager attackManager;
-        private MovementManager movementManager;
+        private MovementManager movementManager;        
 
         public Alice(Texture2D texture, Texture2D attackTexture, IInputReader keyboardReader, IInputReader mouseReader)
         {
@@ -55,6 +56,7 @@ namespace GameDevProject
             Acceleration = new Vector2(0.1f, 0.1f);
             spriteEffect = SpriteEffects.None;
 
+            _attackFactory = new AliceAttackFactory(attackTexture);
             attackManager = new AttackManager();
             movementManager = new MovementManager();
         }

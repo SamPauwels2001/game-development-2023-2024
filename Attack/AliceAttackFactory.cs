@@ -12,7 +12,7 @@ public class AliceAttackFactory : IAttackFactory
         _attackTexture = attackTexture;
     }
 
-    public IAttack CreateProjectileAttack(Vector2 position, Vector2 direction)
+    public IAttack CreateProjectile(Vector2 position, Vector2 direction)
     {
         return new ProjectileAttack(_attackTexture, position, direction, 5f); // speed 5f for now idk
     }
