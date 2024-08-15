@@ -21,6 +21,8 @@ namespace GameDevProject
 
         Texture2D aliceTexture;
         Texture2D attackBubbleTexture;
+        Texture2D itemTexture;
+
         Alice alice;
 
         public Game1()
@@ -50,6 +52,7 @@ namespace GameDevProject
             //load sprites
             aliceTexture = Content.Load<Texture2D>("AliceSprite");
             attackBubbleTexture = Content.Load<Texture2D>("AttackBubble");
+            itemTexture = Content.Load<Texture2D>("ItemsSprite");
             InitializeGameObjects();
         }
 
