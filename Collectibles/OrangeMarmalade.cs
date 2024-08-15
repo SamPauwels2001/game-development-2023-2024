@@ -1,13 +1,14 @@
 ﻿using System;
+using GameDevProject;
 
 public class OrangeMarmalade : IPowerUp
 {
-    public void Collect(Player player)
+    public void Collect(Alice alice)
     {
-        ApplyEffect(player);
+        ApplyEffect(alice);
     }
 
-    public void ApplyEffect(Player player)
+    public void ApplyEffect(Alice alice)
     {
         // make player temporarily invincible
     }

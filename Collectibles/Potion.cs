@@ -1,11 +1,12 @@
 ﻿using System;
+using GameDevProject;
 
 public class Potion : IItem
 {
     public int Points { get; } = 50;
 
-    public void Collect(Player player)
+    public void Collect(Alice alice)
     {
-        //AddPoints(Points);        
+        alice.PlayerScore.AddPoints(Points);        
     }
 }

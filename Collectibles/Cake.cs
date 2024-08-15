@@ -1,12 +1,13 @@
 ﻿using System;
+using GameDevProject;
 
 public class Cake : IItem
 {
     public int Points { get; } = 100;
 
-    public void Collect(Player player)
+    public void Collect(Alice alice)
     {
-        //AddPoints(Points);        
+        alice.PlayerScore.AddPoints(Points);
     }
 }
 

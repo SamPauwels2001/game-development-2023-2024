@@ -1,13 +1,14 @@
 ﻿using System;
+using GameDevProject;
 
 public class Boot : IPowerUp
 {
-    public void Collect(Player player)
+    public void Collect(Alice alice)
     {
-        ApplyEffect(player);        
+        ApplyEffect(alice);        
     }
 
-    public void ApplyEffect(Player player)
+    public void ApplyEffect(Alice alice)
     {
         //Increase movement speed
     }

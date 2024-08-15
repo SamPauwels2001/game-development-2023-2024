@@ -1,4 +1,5 @@
 ﻿using System;
+using GameDevProject;
 
 public class PowerUpFactory : ICollectibleFactory
 {

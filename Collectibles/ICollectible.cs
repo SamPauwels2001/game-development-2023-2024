@@ -1,6 +1,7 @@
 ﻿using System;
+using GameDevProject;
 
 public interface ICollectible
 {
-    void Collect(Player player);
+    void Collect(Alice alice);
 }
