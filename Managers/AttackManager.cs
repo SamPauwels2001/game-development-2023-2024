@@ -7,7 +7,12 @@ namespace GameDevProject.Managers
 {
     public class AttackManager
     {
-        private List<IAttack> _attacks = new List<IAttack>();
+        private List<IAttack> _attacks;
+
+        public AttackManager()
+        {
+            _attacks = new List<IAttack>();
+        }
 
         public void AddAttack(IAttack attack)
         {

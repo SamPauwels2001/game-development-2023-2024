@@ -5,15 +5,15 @@ using GameDevProject.Interfaces;
 
 public class AliceAttackFactory : IAttackFactory
 {
-    private Texture2D _attackTexture;
+    //private Texture2D _attackTexture;
 
-    public AliceAttackFactory(Texture2D attackTexture)
+    public AliceAttackFactory()
     {
-        _attackTexture = attackTexture;
+        //_attackTexture = attackTexture;
     }
 
-    public IAttack CreateProjectile(Vector2 position, Vector2 direction)
+    public IAttack CreateProjectile(Texture2D attackTexture, Vector2 position, Vector2 direction)
     {
-        return new ProjectileAttack(_attackTexture, position, direction, 5f); // speed 5f for now idk
+        return new ProjectileAttack(attackTexture, position, direction, 5f); // default speed for now idk
     }
 }

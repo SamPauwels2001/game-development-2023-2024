@@ -16,6 +16,7 @@ namespace GameDevProject
     internal class Alice : IGameObject, IMovable /*,IAttackable*/
     {
         Texture2D aliceTexture;
+        Texture2D projectileAttackTexture;
         Animation.Animation aliceAnimation;
         private SpriteEffects spriteEffect;
 
@@ -38,6 +39,7 @@ namespace GameDevProject
         public Alice(Texture2D texture, Texture2D attackTexture, IInputReader keyboardReader, IInputReader mouseReader)
         {
             aliceTexture = texture;
+            projectileAttackTexture = attackTexture;
             KeyboardReader = keyboardReader; // IMovable property
             this.mouseReader = mouseReader;
             this.screenWidth = Game1.ScreenWidth;
@@ -56,7 +58,7 @@ namespace GameDevProject
             Acceleration = new Vector2(0.1f, 0.1f);
             spriteEffect = SpriteEffects.None;
 
-            _attackFactory = new AliceAttackFactory(attackTexture);
+            _attackFactory = new AliceAttackFactory();
             attackManager = new AttackManager();
             movementManager = new MovementManager();
         }
@@ -87,7 +89,28 @@ namespace GameDevProject
 
             aliceAnimation.Update(gameTime);
             Move();
-        }        
+            HandleMouseClickAttack();
+            attackManager.Update(gameTime);
+        }
+
+        private void HandleMouseClickAttack()
+        {
+            if (((MouseReader)mouseReader).IsLeftMouseClick())
+            {
+                // Calculate center of Alice sprite
+                Vector2 aliceCenter = new Vector2(Position.X + 38, Position.Y + 67);
+
+                // Calculate direction
+                Vector2 mousePosition = mouseReader.ReadInput();
+                Vector2 direction = mousePosition - aliceCenter;
+                direction.Normalize();
+
+                // Attack
+                //add speed later!
+                var attack = _attackFactory.CreateProjectile(projectileAttackTexture, aliceCenter, direction);
+                attackManager.AddAttack(attack);
+            }
+        }
 
         private void Move()
         {

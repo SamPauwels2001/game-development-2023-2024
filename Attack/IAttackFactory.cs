@@ -5,5 +5,5 @@ using GameDevProject.Interfaces;
 
 public interface IAttackFactory
 {
-    IAttack CreateProjectile(Vector2 position, Vector2 direction);
+    IAttack CreateProjectile(Texture2D texture, Vector2 position, Vector2 direction);
 }

@@ -32,7 +32,10 @@ public class ProjectileAttack : IAttack
     {
         _position += _direction * _speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         // Check if the projectile is out of bounds or hits something
-        _isActive = false;
+        /*if (_position.X < 0 || _position.X > Game1.ScreenWidth || _position.Y < 0 || _position.Y > Game1.ScreenHeight)
+        {
+            _isActive = false;
+        }*/
     }
 
     public void Draw(SpriteBatch spriteBatch)
