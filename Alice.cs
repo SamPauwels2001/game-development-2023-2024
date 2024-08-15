@@ -13,7 +13,7 @@ using GameDevProject.Managers;
 
 namespace GameDevProject
 {
-    internal class Alice : IGameObject, IMovable /*,IAttackable*/
+    public class Alice : IGameObject, IMovable /*,IAttackable*/
     {
         Texture2D aliceTexture;
         Texture2D projectileAttackTexture;
@@ -24,6 +24,8 @@ namespace GameDevProject
         public Vector2 Speed { get; set; }
         public float MaxSpeed { get; set; }
         public Vector2 Acceleration { get; set; }
+
+        public Score PlayerScore { get; private set; }
 
         public IInputReader KeyboardReader { get; set; }
         private IInputReader mouseReader;
@@ -56,12 +58,17 @@ namespace GameDevProject
             int initialX = screenWidth / 2 - 38; // Half of the sprite width (76/2)
             int initialY = screenHeight / 2 - 67; // Half of the sprite height (134/2)
             Position = new Vector2(initialX, initialY);
-
-            Speed = new Vector2(1, 1);
-            MaxSpeed = 8;
-            Acceleration = new Vector2(0.1f, 0.1f);
             spriteEffect = SpriteEffects.None;
 
+            //Initialize score
+            PlayerScore = new Score();
+
+            //Movement
+            Speed = new Vector2(1, 1);
+            MaxSpeed = 8;
+            Acceleration = new Vector2(0.1f, 0.1f);            
+
+            //Attack
             timeSinceLastAttack = attackCooldown;
 
             _attackFactory = new AliceAttackFactory();
