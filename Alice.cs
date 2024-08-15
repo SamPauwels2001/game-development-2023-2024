@@ -31,9 +31,9 @@ namespace GameDevProject
         private IInputReader mouseReader;
         private bool isMoving;
 
-        private float attackCooldown = 0.8f;
+        public float attackCooldown = 0.8f;
         private float timeSinceLastAttack = 0.0f;
-        private float attackSpeed = 200f;
+        public float attackSpeed = 200f;
 
         private int screenWidth;
         private int screenHeight;
