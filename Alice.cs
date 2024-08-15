@@ -29,6 +29,10 @@ namespace GameDevProject
         private IInputReader mouseReader;
         private bool isMoving;
 
+        private float attackCooldown = 0.8f;
+        private float timeSinceLastAttack = 0.0f;
+        private float attackSpeed = 200f;
+
         private int screenWidth;
         private int screenHeight;
 
@@ -58,6 +62,8 @@ namespace GameDevProject
             Acceleration = new Vector2(0.1f, 0.1f);
             spriteEffect = SpriteEffects.None;
 
+            timeSinceLastAttack = attackCooldown;
+
             _attackFactory = new AliceAttackFactory();
             attackManager = new AttackManager();
             movementManager = new MovementManager();
@@ -65,6 +71,8 @@ namespace GameDevProject
 
         public void Update(GameTime gameTime)
         {
+            timeSinceLastAttack += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
             // Determine if Alice is moving
             Vector2 direction = KeyboardReader.ReadInput();
             isMoving = direction.LengthSquared() > 0;
@@ -95,21 +103,25 @@ namespace GameDevProject
 
         private void HandleMouseClickAttack()
         {
-            if (((MouseReader)mouseReader).IsLeftMouseClick())
-            {
-                // Calculate center of Alice sprite
-                Vector2 aliceCenter = new Vector2(Position.X + 38, Position.Y + 67);
+           if (timeSinceLastAttack >= attackCooldown)
+           {
+                if (((MouseReader)mouseReader).IsLeftMouseClick())
+                {
+                    // Calculate center of Alice sprite
+                    Vector2 aliceCenter = new Vector2(Position.X + 38, Position.Y + 67);
 
-                // Calculate direction
-                Vector2 mousePosition = mouseReader.ReadInput();
-                Vector2 direction = mousePosition - aliceCenter;
-                direction.Normalize();
+                    // Calculate direction
+                    Vector2 mousePosition = mouseReader.ReadInput();
+                    Vector2 direction = mousePosition - aliceCenter;
+                    direction.Normalize();
 
-                // Attack
-                //add speed later!
-                var attack = _attackFactory.CreateProjectile(projectileAttackTexture, aliceCenter, direction, 200f);
-                attackManager.AddAttack(attack);
-            }
+                    // Attack
+                    //add speed later!
+                    var attack = _attackFactory.CreateProjectile(projectileAttackTexture, aliceCenter, direction, attackSpeed);
+                    attackManager.AddAttack(attack);
+                    timeSinceLastAttack = 0.0f;
+                }
+           }
         }
 
         private void Move()
