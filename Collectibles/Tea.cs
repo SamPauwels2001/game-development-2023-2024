@@ -11,5 +11,6 @@ public class Tea : IPowerUp
     public void ApplyEffect(Alice alice)
     {
         // Increase attack speed
+        alice.attackSpeed += 50f;
     }
 }

@@ -10,6 +10,7 @@ public class Boot : IPowerUp
 
     public void ApplyEffect(Alice alice)
     {
-        //Increase movement speed
+        //increase movement speed by increasing MaxSpeed
+        alice.MaxSpeed += 2;
     }
 }

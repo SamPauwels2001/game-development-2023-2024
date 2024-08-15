@@ -11,5 +11,6 @@ public class Watch : IPowerUp
     public void ApplyEffect(Alice alice)
     {
         //Decrease attack cooldown
+        alice.attackCooldown -= 0.2f;
     }
 }
