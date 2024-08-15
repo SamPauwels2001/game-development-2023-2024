@@ -12,8 +12,8 @@ public class AliceAttackFactory : IAttackFactory
         //_attackTexture = attackTexture;
     }
 
-    public IAttack CreateProjectile(Texture2D attackTexture, Vector2 position, Vector2 direction)
+    public IAttack CreateProjectile(Texture2D attackTexture, Vector2 position, Vector2 direction, float speed)
     {
-        return new ProjectileAttack(attackTexture, position, direction, 5f); // default speed for now idk
+        return new ProjectileAttack(attackTexture, position, direction, speed);
     }
 }

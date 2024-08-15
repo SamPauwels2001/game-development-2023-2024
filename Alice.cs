@@ -107,7 +107,7 @@ namespace GameDevProject
 
                 // Attack
                 //add speed later!
-                var attack = _attackFactory.CreateProjectile(projectileAttackTexture, aliceCenter, direction);
+                var attack = _attackFactory.CreateProjectile(projectileAttackTexture, aliceCenter, direction, 200f);
                 attackManager.AddAttack(attack);
             }
         }

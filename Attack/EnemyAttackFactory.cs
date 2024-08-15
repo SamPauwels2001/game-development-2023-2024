@@ -12,8 +12,8 @@ public class EnemyAttackFactory : IAttackFactory
         //_attackTexture = attackTexture;
     }
 
-    public IAttack CreateProjectile(Texture2D texture, Vector2 position, Vector2 direction)
+    public IAttack CreateProjectile(Texture2D texture, Vector2 position, Vector2 direction, float speed)
     {
-        return new ProjectileAttack(texture, position, direction, 3f); // 3f = speed for enemies for now
+        return new ProjectileAttack(texture, position, direction, speed);
     }
 }
