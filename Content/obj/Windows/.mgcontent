@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/AliceBackground.png</File>
+    <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/AliceSprite.png</File>
+    <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/AttackBubble.png</File>
+    <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/AttackBubbleSprite.png</File>
+    <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/Button.png</File>
+    <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/Button1.png</File>
+    <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/Button2.png</File>
+    <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/Button3.png</File>
+    <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/cake.png</File>
+    <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/istockphoto-1223562152-1024x1024.jpg</File>
+    <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/ItemsSprite.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File>button.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File>background.jpg</File>
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
