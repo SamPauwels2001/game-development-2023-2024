@@ -9,7 +9,7 @@ public class GrassBlock : Block
         BoundingBox = new Rectangle(x, y, 10, 10);
         Passable = true;
         Texture = new Texture2D(graphics, 1, 1);
-        CollideWithEvent = new NoEvent();
+        //CollideWithEvent = new NoEvent();
     }
 
 }
