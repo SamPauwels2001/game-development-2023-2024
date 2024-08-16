@@ -44,7 +44,7 @@ public class PowerUpSpawner
                 );
 
                 // set position of powerup
-                //.SetPosition(position);
+                powerUp.SetPosition(position);
 
                 return powerUp;
             }
@@ -67,6 +67,6 @@ public class PowerUpSpawner
             }
         }
 
-        return "tea"; // Default to "tea"
+        return "tea"; // Default to tea
     }
 }
