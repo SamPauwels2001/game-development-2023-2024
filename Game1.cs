@@ -19,12 +19,6 @@ namespace GameDevProject
         public static int ScreenWidth { get; private set; }
         public static int ScreenHeight { get; private set; }
 
-        Texture2D aliceTexture;
-        Texture2D attackBubbleTexture;
-        Texture2D itemTexture;
-
-        Alice alice;
-
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -50,24 +44,11 @@ namespace GameDevProject
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            //load sprites
-            aliceTexture = Content.Load<Texture2D>("AliceSprite");
-            attackBubbleTexture = Content.Load<Texture2D>("AttackBubble");
-            itemTexture = Content.Load<Texture2D>("ItemsSprite");
-
-            LoadLevel(currentGameState);
-
-            InitializeGameObjects();
-        }
-
-        private void InitializeGameObjects()
-        {
-            alice = new Alice(aliceTexture, attackBubbleTexture, new KeyboardReader(), new MouseReader());
+            LoadLevel(currentGameState);            
         }
 
         protected override void Update(GameTime gameTime)
-        {
-            
+        {            
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -86,22 +67,14 @@ namespace GameDevProject
                     break;
             }*/
 
-            //alice.Update(gameTime);
-
+            currentLevel?.Update(gameTime);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // Draw the current level
             currentLevel?.Draw(gameTime);
-
-            /*_spriteBatch.Begin();
-            alice.Draw(_spriteBatch);
-            _spriteBatch.End();*/
-
             base.Draw(gameTime);
         }
 
@@ -110,13 +83,13 @@ namespace GameDevProject
             switch (gameState)
             {
                 case GameState.Level1:
-                    currentLevel = new Level1(this);
+                    currentLevel = new Level1(this, _spriteBatch, Content);
                     break;
                 case GameState.Level2:
-                    //currentLevel = new Level2(this);
+                    //currentLevel = new Level2(this, _spriteBatch, Content);
                     break;
                 case GameState.Level3:
-                    //currentLevel = new Level3(this);
+                    //currentLevel = new Level3(this, _spriteBatch, Content);
                     break;
             }
 
