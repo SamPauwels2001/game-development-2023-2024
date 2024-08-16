@@ -123,7 +123,6 @@ namespace GameDevProject
                     direction.Normalize();
 
                     // Attack
-                    //add speed later!
                     var attack = _attackFactory.CreateProjectile(projectileAttackTexture, aliceCenter, direction, attackSpeed);
                     attackManager.AddAttack(attack);
                     timeSinceLastAttack = 0.0f;

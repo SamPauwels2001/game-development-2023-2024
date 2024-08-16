@@ -42,6 +42,7 @@ namespace GameDevProject
 
         protected override void Initialize()
         {
+            currentGameState = GameState.Level1; //initial gamestate
             base.Initialize();
         }
 
@@ -53,6 +54,9 @@ namespace GameDevProject
             aliceTexture = Content.Load<Texture2D>("AliceSprite");
             attackBubbleTexture = Content.Load<Texture2D>("AttackBubble");
             itemTexture = Content.Load<Texture2D>("ItemsSprite");
+
+            LoadLevel(currentGameState);
+
             InitializeGameObjects();
         }
 
@@ -67,7 +71,22 @@ namespace GameDevProject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            alice.Update(gameTime);
+            /*switch (currentGameState)
+            {
+                case GameState.MainMenu:
+                    if ( //start level )
+                    {
+                        TransitionToLevel(GameState.Level1);
+                    }
+                    break;
+
+                case GameState.GameOver:
+                    // handle game over
+                    // back to main menu
+                    break;
+            }*/
+
+            //alice.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -76,9 +95,12 @@ namespace GameDevProject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _spriteBatch.Begin();
+            // Draw the current level
+            currentLevel?.Draw(gameTime);
+
+            /*_spriteBatch.Begin();
             alice.Draw(_spriteBatch);
-            _spriteBatch.End();
+            _spriteBatch.End();*/
 
             base.Draw(gameTime);
         }
@@ -99,6 +121,13 @@ namespace GameDevProject
             }
 
             currentLevel?.LoadContent();
+        }
+
+        private void TransitionToLevel(GameState newState)
+        {
+            currentLevel?.UnloadContent();
+            currentGameState = newState;
+            LoadLevel(newState);
         }
 
         protected override void UnloadContent()
