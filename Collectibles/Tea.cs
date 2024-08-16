@@ -8,6 +8,7 @@ public class Tea : IPowerUp
 {
     private Texture2D texture;
     private Rectangle sourceRectangle;
+    private Vector2 position;
 
     public Tea(Texture2D texture, Rectangle sourceRectangle)
     {
@@ -29,5 +30,10 @@ public class Tea : IPowerUp
     public void Draw(SpriteBatch spriteBatch, Vector2 position)
     {
         spriteBatch.Draw(texture, position, sourceRectangle, Color.White);
+    }
+
+    public void SetPosition(Vector2 position)
+    {
+        this.position = position;
     }
 }

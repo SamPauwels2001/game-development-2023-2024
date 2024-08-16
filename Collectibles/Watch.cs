@@ -8,6 +8,7 @@ public class Watch : IPowerUp
 {
     private Texture2D texture;
     private Rectangle sourceRectangle;
+    private Vector2 position;
 
     public Watch(Texture2D texture, Rectangle sourceRectangle)
     {
@@ -29,5 +30,10 @@ public class Watch : IPowerUp
     public void Draw(SpriteBatch spriteBatch, Vector2 position)
     {
         spriteBatch.Draw(texture, position, sourceRectangle, Color.White);
+    }
+
+    public void SetPosition(Vector2 position)
+    {
+        this.position = position;
     }
 }
