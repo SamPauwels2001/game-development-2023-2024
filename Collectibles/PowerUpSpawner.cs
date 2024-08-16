@@ -9,7 +9,7 @@ public class PowerUpSpawner
     private int screenHeight;
 
     // Probability settings
-    private float spawnChance = 0.10f; // 0.01f is 1% chance per update
+    private float spawnChance = 1.0f; // 0.01f is 1% chance per update
     private Dictionary<string, float> powerUpChances;
 
     public PowerUpSpawner(PowerUpFactory powerUpFactory, int screenWidth, int screenHeight)
@@ -34,6 +34,11 @@ public class PowerUpSpawner
         {
             var powerUpType = GetRandomPowerUpType();
             var powerUp = powerUpFactory.Create(powerUpType) as IPowerUp;
+
+            /*if (powerUp == null)
+            {
+                Console.WriteLine("Power-up creation failed for type: " + powerUpType);
+            }*/
 
             if (powerUp != null)
             {

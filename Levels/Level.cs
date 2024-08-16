@@ -27,7 +27,7 @@ public abstract class Level
     {
         var aliceTexture = content.Load<Texture2D>("AliceSprite");
         var attackBubbleTexture = content.Load<Texture2D>("AttackBubble");
-        var itemTexture = content.Load<Texture2D>("ItemsSprite");
+        var itemTexture = content.Load<Texture2D>("ItemSprite");
 
         alice = new Alice(aliceTexture, attackBubbleTexture, new KeyboardReader(), new MouseReader());
 
@@ -45,7 +45,7 @@ public abstract class Level
         if (powerUp != null)
         {
             powerUps.Add(powerUp);
-            Console.WriteLine($"Power-up spawned at: {powerUp.Position}");
+            //Console.WriteLine($"Power-up spawned at: {powerUp.Position}");
         }
 
         foreach (var powerUp in powerUps)
