@@ -29,6 +29,9 @@ public abstract class Level
         var itemTexture = content.Load<Texture2D>("ItemsSprite");
 
         alice = new Alice(aliceTexture, attackBubbleTexture, new KeyboardReader(), new MouseReader());
+
+        var itemFactory = new ItemFactory(itemTexture);
+        var powerUpFactory = new PowerUpFactory(itemTexture);
     }
 
     public virtual void Update(GameTime gameTime) 
