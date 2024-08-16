@@ -19,7 +19,6 @@ namespace GameDevProject.Animation
 
         //private double frameMovement = 0;
 
-
         public Animation()
         {
             frames = new List<AnimationFrame>();
