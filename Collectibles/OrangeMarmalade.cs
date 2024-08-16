@@ -26,7 +26,7 @@ public class OrangeMarmalade : IPowerUp
         // make player temporarily invincible
     }
 
-    public void Draw(SpriteBatch spriteBatch, Vector2 position)
+    public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(texture, position, sourceRectangle, Color.White);
     }

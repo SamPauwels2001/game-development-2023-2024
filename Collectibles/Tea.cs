@@ -27,7 +27,7 @@ public class Tea : IPowerUp
         alice.attackSpeed += 50f;
     }
 
-    public void Draw(SpriteBatch spriteBatch, Vector2 position)
+    public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(texture, position, sourceRectangle, Color.White);
     }

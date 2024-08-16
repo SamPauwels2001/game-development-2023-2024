@@ -9,7 +9,7 @@ public class PowerUpSpawner
     private int screenHeight;
 
     // Probability settings
-    private float spawnChance = 0.01f; // 1% chance per update
+    private float spawnChance = 0.10f; // 0.01f is 1% chance per update
     private Dictionary<string, float> powerUpChances;
 
     public PowerUpSpawner(PowerUpFactory powerUpFactory, int screenWidth, int screenHeight)

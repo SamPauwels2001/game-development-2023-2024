@@ -27,7 +27,7 @@ public class Boot : IPowerUp
         alice.MaxSpeed += 2;
     }
 
-    public void Draw(SpriteBatch spriteBatch, Vector2 position)
+    public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(texture, position, sourceRectangle, Color.White);
     }

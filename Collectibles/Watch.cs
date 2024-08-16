@@ -27,7 +27,7 @@ public class Watch : IPowerUp
         alice.attackCooldown -= 0.2f;
     }
 
-    public void Draw(SpriteBatch spriteBatch, Vector2 position)
+    public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(texture, position, sourceRectangle, Color.White);
     }

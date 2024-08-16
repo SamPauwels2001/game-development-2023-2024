@@ -20,6 +20,7 @@ public abstract class Level
         this.game = game;
         this.spriteBatch = spriteBatch;
         this.content = content;
+        powerUps = new List<IPowerUp>();
     }
 
     public virtual void LoadContent() 
@@ -32,17 +33,38 @@ public abstract class Level
 
         var itemFactory = new ItemFactory(itemTexture);
         var powerUpFactory = new PowerUpFactory(itemTexture);
+
+        powerUpSpawner = new PowerUpSpawner(powerUpFactory, Game1.ScreenWidth, Game1.ScreenHeight);
     }
 
     public virtual void Update(GameTime gameTime) 
     {
         alice.Update(gameTime);
+
+        var powerUp = powerUpSpawner.TrySpawnPowerUp();
+        if (powerUp != null)
+        {
+            powerUps.Add(powerUp);
+            Console.WriteLine($"Power-up spawned at: {powerUp.Position}");
+        }
+
+        foreach (var powerUp in powerUps)
+        {
+            // update existing powerups or something idk
+        }
     }
 
     public virtual void Draw(GameTime gameTime) 
     {
         spriteBatch.Begin();
+
         alice.Draw(spriteBatch);
+
+        foreach (var powerUp in powerUps)
+        {
+            powerUp.Draw(spriteBatch);
+        }
+
         spriteBatch.End();
     }
 
