@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-class Block : IGameObject
+public class Block : IGameObject
 {
     public Rectangle BoundingBox { get; set; }
     public bool Passable { get; set; }

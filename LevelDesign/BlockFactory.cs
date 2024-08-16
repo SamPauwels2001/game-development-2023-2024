@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-class BlockFactory
+public class BlockFactory
 {
     public static Block CreateBlock(
     string type, int x, int y, GraphicsDevice graphics)
