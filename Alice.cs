@@ -13,7 +13,7 @@ using GameDevProject.Managers;
 
 namespace GameDevProject
 {
-    public class Alice : IGameObject, IMovable /*,IAttackable*/
+    public class Alice : IGameObject, IMovable ,IAttackable
     {
         Texture2D aliceTexture;
         Texture2D projectileAttackTexture;
@@ -136,6 +136,14 @@ namespace GameDevProject
         private void Move()
         {
             movementManager.Move(this);
+        }
+
+        public void TakeDamage()
+        {
+            if (Lives > 0)
+            {
+                Lives--;
+            }
         }
 
         public void DrawLives(SpriteBatch spriteBatch, Texture2D heartTexture)
