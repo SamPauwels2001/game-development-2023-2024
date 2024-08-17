@@ -10,6 +10,11 @@ namespace GameDevProject.Interfaces
     public interface IAttackable
     {
         void TakeDamage();
+
+        Vector2 Position { get; }
+        int Width { get; }
+        int Height { get; }
     } 
+
 }
 

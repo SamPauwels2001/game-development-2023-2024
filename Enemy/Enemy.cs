@@ -51,7 +51,7 @@ public class Enemy : IGameObject
             timeSinceLastAttack = 0.0f;
         }
 
-        CheckProjectileCollisions(alice);
+        CollisionManager.CheckProjectileCollisions(alice, attackManager);
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -82,7 +82,7 @@ public class Enemy : IGameObject
         attackManager.AddAttack(attack);
     }
 
-    //Probably move this code later!!
+    /*//Probably move this code later!!
     private void CheckProjectileCollisions(Alice alice)
     {
         foreach (var attack in attackManager.attacks)
@@ -96,5 +96,5 @@ public class Enemy : IGameObject
                 attack.Deactivate();
             }
         }
-    }
+    }*/
 }
