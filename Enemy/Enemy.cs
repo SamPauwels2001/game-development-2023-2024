@@ -20,6 +20,7 @@ public class Enemy
     public void Update(GameTime gameTime, Alice alice)
     {
         movementStrategy.Move(this, alice, gameTime);
+        KeepWithinBounds();
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -30,5 +31,13 @@ public class Enemy
     public void SetMovementStrategy(IMovementStrategy strategy)
     {
         this.movementStrategy = strategy;
+    }
+
+    private void KeepWithinBounds()
+    {
+        Position = new Vector2(
+            MathHelper.Clamp(Position.X, 0, Game1.ScreenWidth - texture.Width),
+            MathHelper.Clamp(Position.Y, 0, Game1.ScreenHeight - texture.Height)
+        );
     }
 }
