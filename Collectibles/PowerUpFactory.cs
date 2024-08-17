@@ -4,23 +4,27 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using GameDevProject.Animation;
 
-public class PowerUpFactory : ICollectibleFactory
+namespace GameDevProject.Collectibles
 {
-    private Texture2D itemTexture;
-
-    public PowerUpFactory(Texture2D itemTexture)
+    public class PowerUpFactory : ICollectibleFactory
     {
-        this.itemTexture = itemTexture;
-    }
+        private Texture2D itemTexture;
 
-    public ICollectible Create(string type)
-    {
-        return type switch
+        public PowerUpFactory(Texture2D itemTexture)
         {
-            "tea" => new Tea(itemTexture, new Rectangle(27, 26, 25, 18)),
-            "watch" => new Watch(itemTexture, new Rectangle(63, 1, 12, 17)),
-            "boot" => new Boot(itemTexture, new Rectangle(1, 27, 21, 26)),
-            "orangemarmalade" => new OrangeMarmalade(itemTexture, new Rectangle(44, 1, 14, 15)),
-        };
+            this.itemTexture = itemTexture;
+        }
+
+        public ICollectible Create(string type)
+        {
+            return type switch
+            {
+                "tea" => new Tea(itemTexture, new Rectangle(27, 26, 25, 18)),
+                "watch" => new Watch(itemTexture, new Rectangle(63, 1, 12, 17)),
+                "boot" => new Boot(itemTexture, new Rectangle(1, 27, 21, 26)),
+                "orangemarmalade" => new OrangeMarmalade(itemTexture, new Rectangle(44, 1, 14, 15)),
+                _ => null
+            };
+        }
     }
 }

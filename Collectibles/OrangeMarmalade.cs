@@ -4,35 +4,38 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using GameDevProject.Animation;
 
-public class OrangeMarmalade : IPowerUp
+namespace GameDevProject.Collectibles
 {
-    private Texture2D texture;
-    private Rectangle sourceRectangle;
-    private Vector2 position;
-
-    public OrangeMarmalade(Texture2D texture, Rectangle sourceRectangle)
+    public class OrangeMarmalade : IPowerUp
     {
-        this.texture = texture;
-        this.sourceRectangle = sourceRectangle;
-    }
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Vector2 position;
 
-    public void Collect(Alice alice)
-    {
-        ApplyEffect(alice);
-    }
+        public OrangeMarmalade(Texture2D texture, Rectangle sourceRectangle)
+        {
+            this.texture = texture;
+            this.sourceRectangle = sourceRectangle;
+        }
 
-    public void ApplyEffect(Alice alice)
-    {
-        // make player temporarily invincible
-    }
+        public void Collect(Alice alice)
+        {
+            ApplyEffect(alice);
+        }
 
-    public void Draw(SpriteBatch spriteBatch)
-    {
-        spriteBatch.Draw(texture, position, sourceRectangle, Color.White);
-    }
+        public void ApplyEffect(Alice alice)
+        {
+            // make player temporarily invincible
+        }
 
-    public void SetPosition(Vector2 position)
-    {
-        this.position = position;
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture, position, sourceRectangle, Color.White);
+        }
+
+        public void SetPosition(Vector2 position)
+        {
+            this.position = position;
+        }
     }
 }

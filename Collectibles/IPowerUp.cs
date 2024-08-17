@@ -1,8 +1,14 @@
 ﻿using System;
 using GameDevProject;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-public interface IPowerUp : ICollectible
+namespace GameDevProject.Collectibles
 {
-    //power ups apply an effect or make player stronger
-    void ApplyEffect(Alice alice);
+    public interface IPowerUp : ICollectible
+    {
+        //power ups apply an effect or make player stronger
+        void ApplyEffect(Alice alice);
+        void SetPosition(Vector2 position);
+    }
 }

@@ -6,6 +6,7 @@ using GameDevProject.Input;
 using System.Collections.Generic;
 using GameDevProject.Interfaces;
 using GameDevProject;
+using GameDevProject.Collectibles;
 using Microsoft.Xna.Framework.Content;
 
 public abstract class Level
@@ -14,6 +15,8 @@ public abstract class Level
     protected SpriteBatch spriteBatch;
     protected ContentManager content;
     protected Alice alice;
+    protected List<IPowerUp> powerUps;
+    protected PowerUpSpawner powerUpSpawner;
 
     public Level(Game1 game, SpriteBatch spriteBatch, ContentManager content)
     {
@@ -48,7 +51,7 @@ public abstract class Level
             //Console.WriteLine($"Power-up spawned at: {powerUp.Position}");
         }
 
-        foreach (var powerUp in powerUps)
+        foreach (var spawnedPowerUp in powerUps)
         {
             // update existing powerups or something idk
         }

@@ -1,7 +1,10 @@
 ﻿using System;
 using GameDevProject;
 
-public interface ICollectibleFactory
+namespace GameDevProject.Collectibles
 {
-    ICollectible Create(string type);
+    public interface ICollectibleFactory
+    {
+        ICollectible Create(string type);
+    }
 }

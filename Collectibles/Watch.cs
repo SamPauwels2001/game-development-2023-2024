@@ -4,36 +4,39 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using GameDevProject.Animation;
 
-public class Watch : IPowerUp
+namespace GameDevProject.Collectibles
 {
-    private Texture2D texture;
-    private Rectangle sourceRectangle;
-    private Vector2 position;
-
-    public Watch(Texture2D texture, Rectangle sourceRectangle)
+    public class Watch : IPowerUp
     {
-        this.texture = texture;
-        this.sourceRectangle = sourceRectangle;
-    }
+        private Texture2D texture;
+        private Rectangle sourceRectangle;
+        private Vector2 position;
 
-    public void Collect(Alice alice)
-    {
-        ApplyEffect(alice);
-    }
+        public Watch(Texture2D texture, Rectangle sourceRectangle)
+        {
+            this.texture = texture;
+            this.sourceRectangle = sourceRectangle;
+        }
 
-    public void ApplyEffect(Alice alice)
-    {
-        //Decrease attack cooldown
-        alice.attackCooldown -= 0.2f;
-    }
+        public void Collect(Alice alice)
+        {
+            ApplyEffect(alice);
+        }
 
-    public void Draw(SpriteBatch spriteBatch)
-    {
-        spriteBatch.Draw(texture, position, sourceRectangle, Color.White);
-    }
+        public void ApplyEffect(Alice alice)
+        {
+            //Decrease attack cooldown
+            alice.attackCooldown -= 0.2f;
+        }
 
-    public void SetPosition(Vector2 position)
-    {
-        this.position = position;
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture, position, sourceRectangle, Color.White);
+        }
+
+        public void SetPosition(Vector2 position)
+        {
+            this.position = position;
+        }
     }
 }

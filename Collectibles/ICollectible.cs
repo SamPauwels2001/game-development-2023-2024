@@ -1,7 +1,14 @@
 ﻿using System;
 using GameDevProject;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-public interface ICollectible
+namespace GameDevProject.Collectibles
 {
-    void Collect(Alice alice);
+    public interface ICollectible
+    {
+        void Collect(Alice alice);
+        void Draw(SpriteBatch spriteBatch);
+    }
+
 }
