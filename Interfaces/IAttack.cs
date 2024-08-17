@@ -12,6 +12,7 @@ namespace GameDevProject.Interfaces
     {
         //IGameObject for update and draw
         void ExecuteAttack(Vector2 position, Vector2 direction);
+        void Deactivate();
         bool IsActive { get; }
 
         Vector2 Position { get; }

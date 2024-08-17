@@ -48,4 +48,9 @@ public class ProjectileAttack : IAttack
     {
         spriteBatch.Draw(_texture, _position, Color.White);
     }
+
+    public void Deactivate()
+    {
+        _isActive = false;
+    }
 }

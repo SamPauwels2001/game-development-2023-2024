@@ -93,6 +93,7 @@ public class Enemy : IGameObject
             if (attackRect.Intersects(aliceRect))
             {
                 alice.TakeDamage();
+                attack.Deactivate();
             }
         }
     }
