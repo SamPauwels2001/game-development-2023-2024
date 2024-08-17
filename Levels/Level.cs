@@ -53,9 +53,22 @@ public abstract class Level
             //Console.WriteLine($"Power-up spawned at: {powerUp.Position}");
         }
 
+        //powerups that have been collected, will be deleted
+        List<IPowerUp> collectedPowerUps = new List<IPowerUp>();
+
         foreach (var spawnedPowerUp in powerUps)
         {
-            // update existing powerups or something idk
+            if (IsCollision(alice.Position, spawnedPowerUp))
+            {
+                spawnedPowerUp.Collect(alice);
+                collectedPowerUps.Add(spawnedPowerUp);
+            }
+        }
+
+        // Remove collected power-ups
+        foreach (var collectedPowerUp in collectedPowerUps)
+        {
+            powerUps.Remove(collectedPowerUp);
         }
     }
 
@@ -76,5 +89,14 @@ public abstract class Level
     public virtual void UnloadContent() 
     { 
         //unload level specific content
+    }
+
+    //Probably move this somewher else later?
+    private bool IsCollision(Vector2 playerPosition, ICollectible collectible)
+    {
+        Rectangle playerRectangle = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, alice.Width, alice.Height);
+        Rectangle collectibleRectangle = new Rectangle((int)collectible.Position.X, (int)collectible.Position.Y, collectible.Width, collectible.Height);
+
+        return playerRectangle.Intersects(collectibleRectangle);
     }
 }

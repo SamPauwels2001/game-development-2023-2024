@@ -11,6 +11,7 @@ namespace GameDevProject.Collectibles
         public int Points { get; } = 50;
         private Texture2D texture;
         private Rectangle sourceRectangle;
+        private Vector2 position;
 
         public Potion(Texture2D texture, Rectangle sourceRectangle)
         {
@@ -25,8 +26,16 @@ namespace GameDevProject.Collectibles
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, sourceRectangle, Color.White);
+            spriteBatch.Draw(texture, position, sourceRectangle, Color.White);
         }
-        //, Vector2 position
+
+        public int Width => sourceRectangle.Width;
+        public int Height => sourceRectangle.Height;
+
+        public Vector2 Position
+        {
+            get => position;
+            set => position = value;
+        }
     }
 }

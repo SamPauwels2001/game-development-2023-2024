@@ -9,6 +9,9 @@ namespace GameDevProject.Collectibles
     {
         void Collect(Alice alice);
         void Draw(SpriteBatch spriteBatch);
+        int Width { get; }
+        int Height { get; }
+        Vector2 Position { get; set; }
     }
 
 }

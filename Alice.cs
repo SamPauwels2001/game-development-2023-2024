@@ -40,6 +40,9 @@ namespace GameDevProject
         private int screenWidth;
         private int screenHeight;
 
+        public int Width => aliceAnimation.CurrentFrame.SourceRectangle.Width;
+        public int Height => aliceAnimation.CurrentFrame.SourceRectangle.Height;
+
         private IAttackFactory _attackFactory;
         private AttackManager attackManager;
         private MovementManager movementManager;        

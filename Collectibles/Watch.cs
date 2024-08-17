@@ -38,5 +38,14 @@ namespace GameDevProject.Collectibles
         {
             this.position = position;
         }
+
+        public int Width => sourceRectangle.Width;
+        public int Height => sourceRectangle.Height;
+
+        public Vector2 Position
+        {
+            get => position;
+            set => position = value;
+        }
     }
 }

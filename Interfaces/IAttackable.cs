@@ -9,7 +9,7 @@ namespace GameDevProject.Interfaces
 {
     public interface IAttackable
     {
-        void TakeDamage(int damage);
+        void TakeDamage();
     } 
 }
 
