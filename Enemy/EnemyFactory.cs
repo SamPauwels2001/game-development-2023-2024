@@ -32,7 +32,7 @@ public class EnemyFactory
     {
         var enemy = new Enemy(enemyTexture, new ErraticMovementStrategy());
         enemy.Position = position;
-        enemy.Speed = 300f;
+        enemy.Speed = 350f;
         return enemy;
     }
 }
