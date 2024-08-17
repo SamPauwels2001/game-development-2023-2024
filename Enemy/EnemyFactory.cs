@@ -16,7 +16,7 @@ public class EnemyFactory
     {
         var enemy = new Enemy(enemyTexture, new StayAwayStrategy());
         enemy.Position = position;
-        enemy.Speed = 225f;
+        enemy.Speed = 300f;
         return enemy;
     }
 
