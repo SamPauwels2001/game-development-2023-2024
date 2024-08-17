@@ -12,7 +12,7 @@ namespace GameDevProject.Collectibles
         private int screenHeight;
 
         // Probability settings
-        private float spawnChance = 1.0f; // 0.01f is 1% chance per update
+        private float spawnChance = 0.005f; // 0.01f is 1% chance per update
         private Dictionary<string, float> powerUpChances;
 
         public PowerUpSpawner(PowerUpFactory powerUpFactory, int screenWidth, int screenHeight)
@@ -24,10 +24,10 @@ namespace GameDevProject.Collectibles
 
             powerUpChances = new Dictionary<string, float>
         {
-            { "tea", 0.5f }, // 50% chance
-            { "boot", 0.3f }, // 30% chance
-            { "watch", 0.15f }, // 15% chance
-            { "orangemarmalade", 0.05f } // 5% chance
+            { "tea", 0.4f }, 
+            { "boot", 0.1f }, 
+            { "watch", 0.15f },
+            { "orangemarmalade", 0.4f }
         };
         }
 
@@ -37,11 +37,6 @@ namespace GameDevProject.Collectibles
             {
                 var powerUpType = GetRandomPowerUpType();
                 var powerUp = powerUpFactory.Create(powerUpType) as IPowerUp;
-
-                /*if (powerUp == null)
-                {
-                    Console.WriteLine("Power-up creation failed for type: " + powerUpType);
-                }*/
 
                 if (powerUp != null)
                 {
