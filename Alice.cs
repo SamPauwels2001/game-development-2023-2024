@@ -122,6 +122,13 @@ namespace GameDevProject
             attackManager.Update(gameTime);
         }
 
+        public void UpdateAliceCollisions(GameTime gameTime, List<Enemy> enemies) {
+            foreach (var enemy in enemies)
+            {
+                CollisionManager.CheckProjectileCollisions(enemy, attackManager);
+            }
+        }
+
         private void HandleMouseClickAttack()
         {
            if (timeSinceLastAttack >= attackCooldown)

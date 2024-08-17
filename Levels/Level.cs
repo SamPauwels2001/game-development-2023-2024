@@ -57,6 +57,7 @@ public abstract class Level
     public virtual void Update(GameTime gameTime) 
     {
         alice.Update(gameTime);
+        alice.UpdateAliceCollisions(gameTime, enemies);
 
         var powerUp = powerUpSpawner.TrySpawnPowerUp();
         if (powerUp != null)
