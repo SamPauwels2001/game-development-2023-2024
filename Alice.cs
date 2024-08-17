@@ -49,9 +49,11 @@ namespace GameDevProject
 
         private IAttackFactory _attackFactory;
         private AttackManager attackManager;
-        private MovementManager movementManager;        
+        private MovementManager movementManager;
 
-        public Alice(Texture2D texture, Texture2D attackTexture, IInputReader keyboardReader, IInputReader mouseReader)
+        private SpriteFont font;
+
+        public Alice(Texture2D texture, Texture2D attackTexture, IInputReader keyboardReader, IInputReader mouseReader, SpriteFont font)
         {
             aliceTexture = texture;
             projectileAttackTexture = attackTexture;
@@ -59,6 +61,7 @@ namespace GameDevProject
             this.mouseReader = mouseReader;
             this.screenWidth = Game1.ScreenWidth;
             this.screenHeight = Game1.ScreenHeight;
+            this.font = font;
 
             // Initialize animation
             aliceAnimation = new Animation.Animation();
@@ -181,6 +184,18 @@ namespace GameDevProject
             }
         }
 
+        public void DrawScore(SpriteBatch spriteBatch, SpriteFont font)
+        {
+            string scoreText = $"Score: {PlayerScore.CurrentScore}";
+            Vector2 textSize = font.MeasureString(scoreText);
+            Vector2 position = new Vector2(
+                (screenWidth - textSize.X) / 2, // Center horizontally
+                10 // Top padding
+            );
+
+            spriteBatch.DrawString(font, scoreText, position, Color.White);
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             if (isVisible && aliceAnimation.CurrentFrame != null)
@@ -189,8 +204,10 @@ namespace GameDevProject
             }
 
             DrawLives(spriteBatch, HeartTexture);
+            DrawScore(spriteBatch, font);
 
             attackManager.Draw(spriteBatch);
         }
+
     }
 }

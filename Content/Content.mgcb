@@ -193,3 +193,10 @@
 /processorParam:TextureFormat=Color
 /build:PowerUpMenu.png
 
+#begin Score.spritefont
+/importer:FontDescriptionImporter
+/processor:LocalizedFontProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Score.spritefont
+

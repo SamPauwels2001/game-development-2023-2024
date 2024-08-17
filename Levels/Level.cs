@@ -22,6 +22,8 @@ public abstract class Level
     private EnemySpawner enemySpawner;
     private List<IItem> droppedItems;
 
+    private SpriteFont scoreFont;
+
     public Level(Game1 game, SpriteBatch spriteBatch, ContentManager content)
     {
         this.game = game;
@@ -41,7 +43,9 @@ public abstract class Level
         var heartTexture = content.Load<Texture2D>("Heart");
         var itemTexture = content.Load<Texture2D>("ItemsSprite");
 
-        alice = new Alice(aliceTexture, attackBubbleTexture, new KeyboardReader(), new MouseReader());
+        scoreFont = content.Load<SpriteFont>("Score");
+
+        alice = new Alice(aliceTexture, attackBubbleTexture, new KeyboardReader(), new MouseReader(), scoreFont);
         alice.HeartTexture = heartTexture;
 
         var itemFactory = new ItemFactory(itemTexture);
