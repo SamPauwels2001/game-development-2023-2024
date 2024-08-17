@@ -19,7 +19,7 @@ public abstract class Level
     protected PowerUpSpawner powerUpSpawner;
 
     private List<Enemy> enemies;
-    private EnemyFactory enemyFactory;
+    private EnemySpawner enemySpawner;
 
     public Level(Game1 game, SpriteBatch spriteBatch, ContentManager content)
     {
@@ -29,8 +29,6 @@ public abstract class Level
         powerUps = new List<IPowerUp>();
 
         enemies = new List<Enemy>();
-        var enemyTexture = content.Load<Texture2D>("Card");
-        enemyFactory = new EnemyFactory(enemyTexture);
     }
 
     public virtual void LoadContent() 
@@ -49,9 +47,9 @@ public abstract class Level
 
         powerUpSpawner = new PowerUpSpawner(powerUpFactory, Game1.ScreenWidth, Game1.ScreenHeight);
 
-        enemies.Add(enemyFactory.CreateStayAwayEnemy(new Vector2(100, 100), enemyProjectileTexture));
-        enemies.Add(enemyFactory.CreateMoveCloserEnemy(new Vector2(200, 200), enemyProjectileTexture));
-        enemies.Add(enemyFactory.CreateErraticEnemy(new Vector2(300, 300), enemyProjectileTexture));
+        var enemyTexture = content.Load<Texture2D>("Card");
+        var enemyFactory = new EnemyFactory(enemyTexture);
+        enemySpawner = new EnemySpawner(enemyFactory, enemies, Game1.ScreenWidth, Game1.ScreenHeight, initialSpawnInterval: 5.0f);
     }
 
     public virtual void Update(GameTime gameTime) 
@@ -63,7 +61,6 @@ public abstract class Level
         if (powerUp != null)
         {
             powerUps.Add(powerUp);
-            //Console.WriteLine($"Power-up spawned at: {powerUp.Position}");
         }
 
         //powerups that have been collected, will be deleted
@@ -83,6 +80,9 @@ public abstract class Level
         {
             powerUps.Remove(collectedPowerUp);
         }
+
+        var enemyProjectileTexture = content.Load<Texture2D>("EnemyProjectile");
+        enemySpawner.Update(gameTime, enemyProjectileTexture);
 
         for (int i = enemies.Count - 1; i >= 0; i--)
         {
