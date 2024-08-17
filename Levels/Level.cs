@@ -18,12 +18,19 @@ public abstract class Level
     protected List<IPowerUp> powerUps;
     protected PowerUpSpawner powerUpSpawner;
 
+    private List<Enemy> enemies;
+    private EnemyFactory enemyFactory;
+
     public Level(Game1 game, SpriteBatch spriteBatch, ContentManager content)
     {
         this.game = game;
         this.spriteBatch = spriteBatch;
         this.content = content;
         powerUps = new List<IPowerUp>();
+
+        enemies = new List<Enemy>();
+        var enemyTexture = content.Load<Texture2D>("Card");
+        enemyFactory = new EnemyFactory(enemyTexture);
     }
 
     public virtual void LoadContent() 
@@ -40,6 +47,10 @@ public abstract class Level
         var powerUpFactory = new PowerUpFactory(itemTexture);
 
         powerUpSpawner = new PowerUpSpawner(powerUpFactory, Game1.ScreenWidth, Game1.ScreenHeight);
+
+        enemies.Add(enemyFactory.CreateStayAwayEnemy(new Vector2(100, 100)));
+        enemies.Add(enemyFactory.CreateMoveCloserEnemy(new Vector2(200, 200)));
+        enemies.Add(enemyFactory.CreateErraticEnemy(new Vector2(300, 300)));
     }
 
     public virtual void Update(GameTime gameTime) 
@@ -70,6 +81,11 @@ public abstract class Level
         {
             powerUps.Remove(collectedPowerUp);
         }
+
+        foreach (var enemy in enemies)
+        {
+            enemy.Update(gameTime, alice);
+        }
     }
 
     public virtual void Draw(GameTime gameTime) 
@@ -81,6 +97,11 @@ public abstract class Level
         foreach (var powerUp in powerUps)
         {
             powerUp.Draw(spriteBatch);
+        }
+
+        foreach (var enemy in enemies)
+        {
+            enemy.Draw(spriteBatch);
         }
 
         spriteBatch.End();
