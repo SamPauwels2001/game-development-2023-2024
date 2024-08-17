@@ -30,9 +30,11 @@ public abstract class Level
     {
         var aliceTexture = content.Load<Texture2D>("AliceSprite");
         var attackBubbleTexture = content.Load<Texture2D>("AttackBubble");
+        var heartTexture = content.Load<Texture2D>("Heart");
         var itemTexture = content.Load<Texture2D>("ItemsSprite");
 
         alice = new Alice(aliceTexture, attackBubbleTexture, new KeyboardReader(), new MouseReader());
+        alice.HeartTexture = heartTexture;
 
         var itemFactory = new ItemFactory(itemTexture);
         var powerUpFactory = new PowerUpFactory(itemTexture);

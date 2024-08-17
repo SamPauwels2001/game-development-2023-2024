@@ -26,6 +26,8 @@ namespace GameDevProject
         public Vector2 Acceleration { get; set; }
 
         public Score PlayerScore { get; private set; }
+        public int Lives { get; private set; } = 3;
+        public Texture2D HeartTexture { get; set; }
 
         public IInputReader KeyboardReader { get; set; }
         private IInputReader mouseReader;
@@ -136,12 +138,25 @@ namespace GameDevProject
             movementManager.Move(this);
         }
 
+        public void DrawLives(SpriteBatch spriteBatch, Texture2D heartTexture)
+        {
+            int heartWidth = heartTexture.Width;
+            int spacing = 10;
+
+            for (int i = 0; i < Lives; i++)
+            {
+                spriteBatch.Draw(heartTexture, new Vector2(10 + i * (heartWidth + spacing), 10), Color.White);
+            }
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             if (aliceAnimation.CurrentFrame != null)
             {
                 spriteBatch.Draw(aliceTexture, Position, aliceAnimation.CurrentFrame.SourceRectangle, Color.White, 0f, Vector2.Zero, 1f, spriteEffect, 0f);
             }
+
+            DrawLives(spriteBatch, HeartTexture);
 
             attackManager.Draw(spriteBatch);
         }
