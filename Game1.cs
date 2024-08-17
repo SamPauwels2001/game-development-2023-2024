@@ -18,6 +18,10 @@ namespace GameDevProject
         private Level currentLevel;
         private MainScreen mainMenu;
         private List<Button> _buttons;
+        private Texture2D powerUpMenuTexture;
+        private bool isPowerUpMenuVisible;
+        private float _toggleCooldown = 0.3f; // in seconds
+        private float _timeSinceLastToggle = 0.0f;
 
         public static int ScreenWidth { get; private set; }
         public static int ScreenHeight { get; private set; }
@@ -49,6 +53,7 @@ namespace GameDevProject
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             //LoadLevel(currentGameState);
+            powerUpMenuTexture = Content.Load<Texture2D>("PowerUpMenu");
             LoadMainMenu();
         }
 
@@ -106,6 +111,15 @@ namespace GameDevProject
                     break;
             }
 
+            _timeSinceLastToggle += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.P) && _timeSinceLastToggle >= _toggleCooldown)
+            {
+                isPowerUpMenuVisible = !isPowerUpMenuVisible;
+                _timeSinceLastToggle = 0.0f;
+
+            }
+
             base.Update(gameTime);
         }
 
@@ -122,6 +136,13 @@ namespace GameDevProject
                 default:
                     currentLevel?.Draw(gameTime);
                     break;
+            }
+
+            if (isPowerUpMenuVisible)
+            {
+                _spriteBatch.Begin();
+                _spriteBatch.Draw(powerUpMenuTexture, new Vector2(ScreenWidth - powerUpMenuTexture.Width, ScreenHeight - powerUpMenuTexture.Height), Color.White);
+                _spriteBatch.End();
             }
 
             base.Draw(gameTime);
