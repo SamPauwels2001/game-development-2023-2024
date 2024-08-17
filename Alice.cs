@@ -10,6 +10,7 @@ using GameDevProject.Interfaces;
 using Microsoft.Xna.Framework.Input;
 using GameDevProject.Input;
 using GameDevProject.Managers;
+using GameDevProject.Attack;
 
 namespace GameDevProject
 {
@@ -32,6 +33,9 @@ namespace GameDevProject
         public IInputReader KeyboardReader { get; set; }
         private IInputReader mouseReader;
         private bool isMoving;
+
+        private Invincibility invincibility;
+        private bool isVisible;
 
         public float attackCooldown = 0.8f;
         private float timeSinceLastAttack = 0.0f;
@@ -65,6 +69,8 @@ namespace GameDevProject
             int initialY = screenHeight / 2 - 67; // Half of the sprite height (134/2)
             Position = new Vector2(initialX, initialY);
             spriteEffect = SpriteEffects.None;
+            invincibility = new Invincibility(this);
+            isVisible = true;
 
             //Initialize score
             PlayerScore = new Score();
@@ -147,6 +153,11 @@ namespace GameDevProject
             {
                 Lives--;
             }
+        }
+
+        public void SetVisible(bool visible)
+        {
+            isVisible = visible;
         }
 
         public void DrawLives(SpriteBatch spriteBatch, Texture2D heartTexture)
