@@ -16,10 +16,10 @@ public class Enemy : IGameObject
     private IAttackFactory _attackFactory;
     private AttackManager attackManager;
     private Texture2D projectileTexture;
-    private float attackSpeed = 300f;
+    private float attackSpeed = 500f;
 
-    private float attackCooldown = 2.0f;
-    private float timeSinceLastAttack = 0.0f;
+    private float attackCooldown = 1.5f;
+    private float timeSinceLastAttack = 1.0f;
 
     //public int Width => texture.Width;
     //public int Height => texture.Height;
