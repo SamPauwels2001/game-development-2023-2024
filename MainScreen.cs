@@ -27,10 +27,14 @@ public class MainScreen : IGameScreen
 
     public void Draw(SpriteBatch spriteBatch)
     {
+        spriteBatch.Begin();
+
         _background.Draw(spriteBatch);
         foreach (var button in _buttons)
         {
             button.Draw(spriteBatch);
         }
+
+        spriteBatch.End();
     }
 }
