@@ -15,7 +15,7 @@ namespace GameDevProject.Collectibles
             this.itemTexture = itemTexture;
         }
 
-        public ICollectible Create(string type)
+        public IItem Create(string type)
         {
             return type switch
             {

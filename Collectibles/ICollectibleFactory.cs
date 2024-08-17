@@ -5,6 +5,6 @@ namespace GameDevProject.Collectibles
 {
     public interface ICollectibleFactory
     {
-        ICollectible Create(string type);
+        //ICollectible Create(string type);
     }
 }

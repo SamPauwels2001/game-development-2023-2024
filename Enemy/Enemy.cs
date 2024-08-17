@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using GameDevProject;
 using GameDevProject.Interfaces;
 using GameDevProject.Managers;
+using GameDevProject.Collectibles;
 
 public class Enemy : IGameObject, IAttackable
 {
@@ -21,18 +22,23 @@ public class Enemy : IGameObject, IAttackable
     private float attackCooldown = 1.5f;
     private float timeSinceLastAttack = 1.0f;
 
+    private ItemFactory itemFactory;
+    private Action<IItem> onItemDrop;
+
     public int Width => texture.Width;
     public int Height => texture.Height;
 
     public bool IsActive { get; private set; } = true;
 
-    public Enemy(Texture2D texture, IMovementStrategy strategy, Texture2D projectileTexture)
+    public Enemy(Texture2D texture, IMovementStrategy strategy, Texture2D projectileTexture, ItemFactory itemFactory, Action<IItem> onItemDrop)
     {
         this.texture = texture;
         this.movementStrategy = strategy;
         this.projectileTexture = projectileTexture;
         this._attackFactory = new EnemyAttackFactory();
         this.attackManager = new AttackManager();
+        this.itemFactory = itemFactory;
+        this.onItemDrop = onItemDrop;
     }
 
     public void Update(GameTime gameTime)
@@ -95,6 +101,26 @@ public class Enemy : IGameObject, IAttackable
     public void TakeDamage()
     {
         IsActive = false;
+        TryDropItem();
+    }
+
+    private void TryDropItem()
+    {
+        Random random = new Random();
+        double dropChance = random.NextDouble();
+
+        if (dropChance < 0.6) // 60% chance for Potion
+        {
+            IItem potion = itemFactory.Create("potion");
+            potion.Position = Position;
+            onItemDrop?.Invoke(potion);
+        }
+        else if (dropChance < 0.9) // 30% chance for Cake after 60% chance for Potion
+        {
+            IItem cake = itemFactory.Create("cake");
+            cake.Position = Position;
+            onItemDrop?.Invoke(cake);
+        }
     }
 
 }

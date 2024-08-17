@@ -20,6 +20,7 @@ public abstract class Level
 
     private List<Enemy> enemies;
     private EnemySpawner enemySpawner;
+    private List<IItem> droppedItems;
 
     public Level(Game1 game, SpriteBatch spriteBatch, ContentManager content)
     {
@@ -29,6 +30,7 @@ public abstract class Level
         powerUps = new List<IPowerUp>();
 
         enemies = new List<Enemy>();
+        droppedItems = new List<IItem>();
     }
 
     public virtual void LoadContent() 
@@ -47,8 +49,10 @@ public abstract class Level
 
         powerUpSpawner = new PowerUpSpawner(powerUpFactory, Game1.ScreenWidth, Game1.ScreenHeight);
 
+        Action<IItem> itemDropCallback = item => droppedItems.Add(item);
+
         var enemyTexture = content.Load<Texture2D>("Card");
-        var enemyFactory = new EnemyFactory(enemyTexture);
+        var enemyFactory = new EnemyFactory(enemyTexture, itemFactory, itemDropCallback);
         enemySpawner = new EnemySpawner(enemyFactory, enemies, Game1.ScreenWidth, Game1.ScreenHeight, initialSpawnInterval: 5.0f);
     }
 
@@ -96,6 +100,21 @@ public abstract class Level
                 enemies.RemoveAt(i);
             }
         }
+
+        // Handle item collection
+        List<IItem> collectedItems = new List<IItem>();
+        foreach (var item in droppedItems)
+        {
+            if (IsCollision(alice.Position, item))
+            {
+                item.Collect(alice);
+                collectedItems.Add(item);
+            }
+        }
+        foreach (var collectedItem in collectedItems)
+        {
+            droppedItems.Remove(collectedItem);
+        }
     }
 
     public virtual void Draw(GameTime gameTime) 
@@ -114,12 +133,22 @@ public abstract class Level
             enemy.Draw(spriteBatch);
         }
 
+        foreach (var item in droppedItems)
+        {
+            item.Draw(spriteBatch);
+        }
+
         spriteBatch.End();
     }
 
     public virtual void UnloadContent() 
     { 
         //unload level specific content
+    }
+
+    private void HandleItemDrop(IItem item)
+    {
+        droppedItems.Add(item);
     }
 
     //Probably move this somewher else later?
