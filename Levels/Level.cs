@@ -37,6 +37,7 @@ public abstract class Level
     {
         var aliceTexture = content.Load<Texture2D>("AliceSprite");
         var attackBubbleTexture = content.Load<Texture2D>("AttackBubble");
+        var enemyProjectileTexture = content.Load<Texture2D>("EnemyProjectile");
         var heartTexture = content.Load<Texture2D>("Heart");
         var itemTexture = content.Load<Texture2D>("ItemsSprite");
 
@@ -48,9 +49,9 @@ public abstract class Level
 
         powerUpSpawner = new PowerUpSpawner(powerUpFactory, Game1.ScreenWidth, Game1.ScreenHeight);
 
-        enemies.Add(enemyFactory.CreateStayAwayEnemy(new Vector2(100, 100)));
-        enemies.Add(enemyFactory.CreateMoveCloserEnemy(new Vector2(200, 200)));
-        enemies.Add(enemyFactory.CreateErraticEnemy(new Vector2(300, 300)));
+        enemies.Add(enemyFactory.CreateStayAwayEnemy(new Vector2(100, 100), enemyProjectileTexture));
+        enemies.Add(enemyFactory.CreateMoveCloserEnemy(new Vector2(200, 200), enemyProjectileTexture));
+        enemies.Add(enemyFactory.CreateErraticEnemy(new Vector2(300, 300), enemyProjectileTexture));
     }
 
     public virtual void Update(GameTime gameTime) 
@@ -84,7 +85,8 @@ public abstract class Level
 
         foreach (var enemy in enemies)
         {
-            enemy.Update(gameTime, alice);
+            enemy.Update(gameTime);
+            enemy.UpdateEnemy(gameTime, alice);
         }
     }
 

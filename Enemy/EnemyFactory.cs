@@ -12,27 +12,30 @@ public class EnemyFactory
         this.enemyTexture = texture;
     }
 
-    public Enemy CreateStayAwayEnemy(Vector2 position)
+    public Enemy CreateStayAwayEnemy(Vector2 position, Texture2D projectileTexture)
     {
-        var enemy = new Enemy(enemyTexture, new StayAwayStrategy());
-        enemy.Position = position;
-        enemy.Speed = 300f;
-        return enemy;
+        return new Enemy(enemyTexture, new StayAwayStrategy(), projectileTexture)
+        {
+            Position = position,
+            Speed = 300f
+        };
     }
 
-    public Enemy CreateMoveCloserEnemy(Vector2 position)
+    public Enemy CreateMoveCloserEnemy(Vector2 position, Texture2D projectileTexture)
     {
-        var enemy = new Enemy(enemyTexture, new MoveCloserStrategy());
-        enemy.Position = position;
-        enemy.Speed = 175f;
-        return enemy;
+        return new Enemy(enemyTexture, new MoveCloserStrategy(), projectileTexture)
+        {
+            Position = position,
+            Speed = 175f
+        };
     }
 
-    public Enemy CreateErraticEnemy(Vector2 position)
+    public Enemy CreateErraticEnemy(Vector2 position, Texture2D projectileTexture)
     {
-        var enemy = new Enemy(enemyTexture, new ErraticMovementStrategy());
-        enemy.Position = position;
-        enemy.Speed = 350f;
-        return enemy;
+        return new Enemy(enemyTexture, new ErraticMovementStrategy(), projectileTexture)
+        {
+            Position = position,
+            Speed = 350f
+        };
     }
 }
