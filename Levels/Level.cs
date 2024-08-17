@@ -83,10 +83,17 @@ public abstract class Level
             powerUps.Remove(collectedPowerUp);
         }
 
-        foreach (var enemy in enemies)
+        for (int i = enemies.Count - 1; i >= 0; i--)
         {
-            enemy.Update(gameTime);
-            enemy.UpdateEnemy(gameTime, alice);
+            if (enemies[i].IsActive)
+            {
+                enemies[i].Update(gameTime);
+                enemies[i].UpdateEnemy(gameTime, alice);
+            }
+            else
+            {
+                enemies.RemoveAt(i);
+            }
         }
     }
 

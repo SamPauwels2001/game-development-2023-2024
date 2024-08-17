@@ -5,7 +5,7 @@ using GameDevProject;
 using GameDevProject.Interfaces;
 using GameDevProject.Managers;
 
-public class Enemy : IGameObject
+public class Enemy : IGameObject, IAttackable
 {
     public Vector2 Position { get; set; }
     public float Speed { get; set; }
@@ -24,6 +24,8 @@ public class Enemy : IGameObject
     public int Width => texture.Width;
     public int Height => texture.Height;
 
+    public bool IsActive { get; private set; } = true;
+
     public Enemy(Texture2D texture, IMovementStrategy strategy, Texture2D projectileTexture)
     {
         this.texture = texture;
@@ -35,11 +37,16 @@ public class Enemy : IGameObject
 
     public void Update(GameTime gameTime)
     {
-        attackManager.Update(gameTime);
+        if (IsActive)
+        {
+            attackManager.Update(gameTime);
+        }
     }
 
     public void UpdateEnemy(GameTime gameTime, Alice alice)
     {
+        if (!IsActive) return;
+
         movementStrategy.Move(this, alice, gameTime);
         KeepWithinBounds();
 
@@ -56,8 +63,11 @@ public class Enemy : IGameObject
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(texture, Position, Color.White);
-        attackManager.Draw(spriteBatch);
+        if (IsActive)
+        {
+            spriteBatch.Draw(texture, Position, Color.White);
+            attackManager.Draw(spriteBatch);
+        }
     }
 
     public void SetMovementStrategy(IMovementStrategy strategy)
@@ -82,19 +92,9 @@ public class Enemy : IGameObject
         attackManager.AddAttack(attack);
     }
 
-    /*//Probably move this code later!!
-    private void CheckProjectileCollisions(Alice alice)
+    public void TakeDamage()
     {
-        foreach (var attack in attackManager.attacks)
-        {
-            Rectangle attackRect = new Rectangle((int)attack.Position.X, (int)attack.Position.Y, attack.Width, attack.Height);
-            Rectangle aliceRect = new Rectangle((int)alice.Position.X, (int)alice.Position.Y, alice.Width, alice.Height);
+        IsActive = false;
+    }
 
-            if (attackRect.Intersects(aliceRect))
-            {
-                alice.TakeDamage();
-                attack.Deactivate();
-            }
-        }
-    }*/
 }
