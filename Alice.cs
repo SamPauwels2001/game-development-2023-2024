@@ -53,6 +53,7 @@ namespace GameDevProject
 
             // Initialize animation
             aliceAnimation = new Animation.Animation();
+            aliceAnimation.AddFrame(new AnimationFrame(new Rectangle(0, 0, 76, 134)));
 
             // Initialize Alice position
             int initialX = screenWidth / 2 - 38; // Half of the sprite width (76/2)
@@ -137,7 +138,10 @@ namespace GameDevProject
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(aliceTexture, Position, aliceAnimation.CurrentFrame.SourceRectangle, Color.White, 0f, Vector2.Zero, 1f, spriteEffect, 0f);
+            if (aliceAnimation.CurrentFrame != null)
+            {
+                spriteBatch.Draw(aliceTexture, Position, aliceAnimation.CurrentFrame.SourceRectangle, Color.White, 0f, Vector2.Zero, 1f, spriteEffect, 0f);
+            }
 
             attackManager.Draw(spriteBatch);
         }
