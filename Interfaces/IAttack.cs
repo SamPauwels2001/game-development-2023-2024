@@ -13,6 +13,9 @@ namespace GameDevProject.Interfaces
         //IGameObject for update and draw
         void ExecuteAttack(Vector2 position, Vector2 direction);
         bool IsActive { get; }
-        //float AttackSpeed { get; set; }
+
+        Vector2 Position { get; }
+        int Width { get; }
+        int Height { get; }
     }
 }

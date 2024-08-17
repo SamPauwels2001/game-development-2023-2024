@@ -7,33 +7,33 @@ namespace GameDevProject.Managers
 {
     public class AttackManager
     {
-        private List<IAttack> _attacks;
+        public List<IAttack> attacks;
 
         public AttackManager()
         {
-            _attacks = new List<IAttack>();
+            attacks = new List<IAttack>();
         }
 
         public void AddAttack(IAttack attack)
         {
-            _attacks.Add(attack);
+            attacks.Add(attack);
         }
 
         public void Update(GameTime gameTime)
         {
-            for (int i = _attacks.Count - 1; i >= 0; i--)
+            for (int i = attacks.Count - 1; i >= 0; i--)
             {
-                _attacks[i].Update(gameTime);
-                if (!_attacks[i].IsActive)
+                attacks[i].Update(gameTime);
+                if (!attacks[i].IsActive)
                 {
-                    _attacks.RemoveAt(i);
+                    attacks.RemoveAt(i);
                 }
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (var attack in _attacks)
+            foreach (var attack in attacks)
             {
                 attack.Draw(spriteBatch);
             }

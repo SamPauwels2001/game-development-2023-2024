@@ -21,8 +21,8 @@ public class Enemy : IGameObject
     private float attackCooldown = 1.5f;
     private float timeSinceLastAttack = 1.0f;
 
-    //public int Width => texture.Width;
-    //public int Height => texture.Height;
+    public int Width => texture.Width;
+    public int Height => texture.Height;
 
     public Enemy(Texture2D texture, IMovementStrategy strategy, Texture2D projectileTexture)
     {
@@ -36,8 +36,6 @@ public class Enemy : IGameObject
     public void Update(GameTime gameTime)
     {
         attackManager.Update(gameTime);
-
-        //check for ptojectile collision with Alice
     }
 
     public void UpdateEnemy(GameTime gameTime, Alice alice)
@@ -53,7 +51,7 @@ public class Enemy : IGameObject
             timeSinceLastAttack = 0.0f;
         }
 
-        // Check for projectile collisions with Alice
+        CheckProjectileCollisions(alice);
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -82,5 +80,20 @@ public class Enemy : IGameObject
 
         var attack = _attackFactory.CreateProjectile(projectileTexture, Position, direction, attackSpeed);
         attackManager.AddAttack(attack);
+    }
+
+    //Probably move this code later!!
+    private void CheckProjectileCollisions(Alice alice)
+    {
+        foreach (var attack in attackManager.attacks)
+        {
+            Rectangle attackRect = new Rectangle((int)attack.Position.X, (int)attack.Position.Y, attack.Width, attack.Height);
+            Rectangle aliceRect = new Rectangle((int)alice.Position.X, (int)alice.Position.Y, alice.Width, alice.Height);
+
+            if (attackRect.Intersects(aliceRect))
+            {
+                alice.TakeDamage();
+            }
+        }
     }
 }

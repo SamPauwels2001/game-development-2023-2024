@@ -14,6 +14,11 @@ public class ProjectileAttack : IAttack
 
     public bool IsActive => _isActive;
 
+    public Vector2 Position => _position;
+
+    public int Width => _texture.Width;
+    public int Height => _texture.Height;
+
     public ProjectileAttack(Texture2D texture, Vector2 position, Vector2 direction, float speed)
     {
         _texture = texture;
