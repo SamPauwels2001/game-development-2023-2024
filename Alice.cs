@@ -34,7 +34,7 @@ namespace GameDevProject
         private IInputReader mouseReader;
         private bool isMoving;
 
-        private Invincibility invincibility;
+        public Invincibility invincibility;
         private bool isVisible;
 
         public float attackCooldown = 0.8f;
@@ -91,6 +91,8 @@ namespace GameDevProject
         public void Update(GameTime gameTime)
         {
             timeSinceLastAttack += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            invincibility.Update(gameTime);
 
             // Determine if Alice is moving
             Vector2 direction = KeyboardReader.ReadInput();
@@ -149,9 +151,10 @@ namespace GameDevProject
 
         public void TakeDamage()
         {
-            if (Lives > 0)
+            if (!invincibility.IsActive() && Lives > 0)
             {
                 Lives--;
+                invincibility.Activate(1f);
             }
         }
 
@@ -173,7 +176,7 @@ namespace GameDevProject
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (aliceAnimation.CurrentFrame != null)
+            if (isVisible && aliceAnimation.CurrentFrame != null)
             {
                 spriteBatch.Draw(aliceTexture, Position, aliceAnimation.CurrentFrame.SourceRectangle, Color.White, 0f, Vector2.Zero, 1f, spriteEffect, 0f);
             }

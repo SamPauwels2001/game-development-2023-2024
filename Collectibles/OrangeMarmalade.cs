@@ -25,7 +25,7 @@ namespace GameDevProject.Collectibles
 
         public void ApplyEffect(Alice alice)
         {
-            // make player temporarily invincible
+            alice.invincibility.Activate(5f);
         }
 
         public void Draw(SpriteBatch spriteBatch)
