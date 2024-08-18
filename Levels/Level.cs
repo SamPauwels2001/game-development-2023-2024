@@ -33,8 +33,8 @@ public abstract class Level
     protected Rectangle fenceSourceRectangle;
     protected Rectangle barrelSourceRectangle;
 
-    protected List<Block> gameBoard;
-    protected List<Block> detailBoard;
+    protected Block[,] gameBoard;
+    protected Block[,] detailBoard;
 
     public Level(Game1 game, SpriteBatch spriteBatch, ContentManager content)
     {
@@ -45,9 +45,6 @@ public abstract class Level
 
         enemies = new List<Enemy>();
         droppedItems = new List<IItem>();
-
-        gameBoard = new List<Block>();
-        detailBoard = new List<Block>();
     }
 
     public virtual void LoadContent() 
@@ -194,15 +191,25 @@ public abstract class Level
     protected virtual List<Block> GetAllBlocks()
     {
         List<Block> allBlocks = new List<Block>();
+
         if (gameBoard != null)
         {
-            allBlocks.AddRange(gameBoard);
+            // Iterate over the gameBoard 2D array
+            foreach (var block in gameBoard)
+            {
+                allBlocks.Add(block);
+            }
         }
 
         if (detailBoard != null)
         {
-            allBlocks.AddRange(detailBoard);
+            // Iterate over the detailBoard 2D array
+            foreach (var block in detailBoard)
+            {
+                allBlocks.Add(block);
+            }
         }
+
         return allBlocks;
     }
 }

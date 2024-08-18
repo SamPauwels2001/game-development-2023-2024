@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using GameDevProject;
 using Microsoft.Xna.Framework.Content;
+using System.Collections.Generic;
 
 public class Level1 : Level
 {
@@ -10,7 +11,10 @@ public class Level1 : Level
     private new Block[,] detailBoard;
 
     public Level1(Game1 game, SpriteBatch spriteBatch, ContentManager content) 
-        : base(game, spriteBatch, content) { }
+        : base(game, spriteBatch, content) 
+    {
+
+    }
 
     public override void LoadContent()
     {
