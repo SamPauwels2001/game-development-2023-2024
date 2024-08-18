@@ -54,7 +54,7 @@ public abstract class Level
 
         scoreFont = content.Load<SpriteFont>("Score");
 
-        tileSet = content.Load<Texture2D>("TileSet1");
+        tileSet = content.Load<Texture2D>("TileSet");
         grassSourceRectangle = new Rectangle(162, 161, 64, 64);
         sandSourceRectangle = new Rectangle(192, 240, 48, 48);
         bushSourceRectangle = new Rectangle(434, 150, 42, 38);
