@@ -4,8 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class FlowerBlock : Block
 {
-    public FlowerBlock(int x, int y, int width, int height, Texture2D flowerTexture)
-        : base(x, y, width, height, flowerTexture)
+    public FlowerBlock(int x, int y, int width, int height, Texture2D tileSetTexture, Rectangle sourceRectangle)
+        : base(x, y, width, height, tileSetTexture, sourceRectangle, true)
     {
 
     }

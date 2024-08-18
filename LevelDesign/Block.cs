@@ -8,14 +8,14 @@ public abstract class Block : IGameObject
     public Rectangle BoundingBox { get; set; }
     public bool Passable { get; set; }
     public Texture2D Texture { get; set; }
-    //public CollideWithEvent CollideWithEvent { get; set; }
+    public Rectangle SourceRectangle { get; set; }
 
-    public Block(int x, int y, int width, int height, Texture2D texture, bool passable = true)
+    public Block(int x, int y, int width, int height, Texture2D texture, Rectangle sourceRectangle, bool passable = true)
     {
         BoundingBox = new Rectangle(x, y, width, height);
         Passable = passable;
         this.Texture = texture;
-        //CollideWithEvent = new NoEvent();
+        SourceRectangle = sourceRectangle;
     }
 
     public abstract void Update(GameTime gameTime);

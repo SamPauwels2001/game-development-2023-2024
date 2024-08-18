@@ -23,7 +23,14 @@ public abstract class Level
     private List<IItem> droppedItems;
 
     private SpriteFont scoreFont;
+
     protected Texture2D tileSet;
+    protected Rectangle grassSourceRectangle;
+    protected Rectangle bushSourceRectangle;
+    protected Rectangle flowerSourceRectangle;
+    protected Rectangle rockSourceRectangle;
+    protected Rectangle fenceSourceRectangle;
+    protected Rectangle barrelSourceRectangle;
 
     public Level(Game1 game, SpriteBatch spriteBatch, ContentManager content)
     {
@@ -45,7 +52,14 @@ public abstract class Level
         var itemTexture = content.Load<Texture2D>("ItemsSprite");
 
         scoreFont = content.Load<SpriteFont>("Score");
+
         tileSet = content.Load<Texture2D>("TileSet1");
+        grassSourceRectangle = new Rectangle(162, 161, 64, 64);
+        bushSourceRectangle = new Rectangle(434, 150, 42, 38);
+        flowerSourceRectangle = new Rectangle(300, 196, 26, 26);
+        rockSourceRectangle = new Rectangle(434, 202, 44, 34);
+        fenceSourceRectangle = new Rectangle(784, 198, 114, 40);
+        barrelSourceRectangle = new Rectangle(484, 244, 40, 44);
 
         alice = new Alice(aliceTexture, attackBubbleTexture, new KeyboardReader(), new MouseReader(), scoreFont);
         alice.HeartTexture = heartTexture;
