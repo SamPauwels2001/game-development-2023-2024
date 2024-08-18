@@ -22,7 +22,7 @@ public abstract class Block : IGameObject
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(Texture, BoundingBox, Color.White);
+        spriteBatch.Draw(Texture, BoundingBox, SourceRectangle, Color.White);
     }
 
     public bool CheckCollision(Rectangle aliceBoundingBox)

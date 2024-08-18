@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/Score.spritefont</SourceFile>
+  <SourceTime>2024-08-17T23:16:07.1305389+02:00</SourceTime>
+  <DestFile>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/bin/Windows/Score.xnb</DestFile>
+  <DestTime>2024-08-18T12:09:41.9906714+02:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
+  <Processor>LocalizedFontProcessor</Processor>
+  <ProcessorTime>2022-07-26T13:44:56+02:00</ProcessorTime>
+  <Parameters>
+    <Key>PremultiplyAlpha</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
