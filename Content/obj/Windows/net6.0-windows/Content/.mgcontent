@@ -20,6 +20,7 @@
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/ItemsSprite.png</File>
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/PowerUpMenu.png</File>
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/Score.spritefont</File>
+    <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/StarRealmsCozyForestPack48x48.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
@@ -38,5 +39,6 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File>TileSet1.png</File>
   </DestFiles>
 </SourceFileCollection>

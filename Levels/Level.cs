@@ -23,6 +23,7 @@ public abstract class Level
     private List<IItem> droppedItems;
 
     private SpriteFont scoreFont;
+    protected Texture2D tileSet;
 
     public Level(Game1 game, SpriteBatch spriteBatch, ContentManager content)
     {
@@ -44,6 +45,7 @@ public abstract class Level
         var itemTexture = content.Load<Texture2D>("ItemsSprite");
 
         scoreFont = content.Load<SpriteFont>("Score");
+        tileSet = content.Load<Texture2D>("TileSet1");
 
         alice = new Alice(aliceTexture, attackBubbleTexture, new KeyboardReader(), new MouseReader(), scoreFont);
         alice.HeartTexture = heartTexture;
