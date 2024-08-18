@@ -10,10 +10,10 @@ public abstract class Block : IGameObject
     public Texture2D Texture { get; set; }
     //public CollideWithEvent CollideWithEvent { get; set; }
 
-    public Block(int x, int y, int width, int height, Texture2D texture)
+    public Block(int x, int y, int width, int height, Texture2D texture, bool passable = true)
     {
         BoundingBox = new Rectangle(x, y, width, height);
-        Passable = true;
+        Passable = passable;
         this.Texture = texture;
         //CollideWithEvent = new NoEvent();
     }
