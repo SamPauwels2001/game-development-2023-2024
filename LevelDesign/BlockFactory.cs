@@ -4,14 +4,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class BlockFactory
 {
-    public static Block CreateBlock(
-    string type, int x, int y, GraphicsDevice graphics)
+    //public static Block CreateBlock(
+    /*string type, int x, int y, GraphicsDevice graphics)
     {
         Block newBlock = null;
         type = type.ToUpper();
         if (type == "GRASS")
         {
-            newGrassBlock = new Block(x, y, graphics);
+            newBlock = new GrassBlock(x, y, graphics);
         }
         /*
         if (type == "TRAP")
@@ -22,6 +22,6 @@ public class BlockFactory
         {
             newBlock = new SlimeBlock(x, y, graphics);
         }*/
-        return newBlock;
-    }
+        //return newBlock;
+    //}
 }
