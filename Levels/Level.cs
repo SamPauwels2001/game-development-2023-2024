@@ -33,6 +33,9 @@ public abstract class Level
     protected Rectangle fenceSourceRectangle;
     protected Rectangle barrelSourceRectangle;
 
+    protected List<Block> gameBoard;
+    protected List<Block> detailBoard;
+
     public Level(Game1 game, SpriteBatch spriteBatch, ContentManager content)
     {
         this.game = game;
@@ -42,6 +45,9 @@ public abstract class Level
 
         enemies = new List<Enemy>();
         droppedItems = new List<IItem>();
+
+        gameBoard = new List<Block>();
+        detailBoard = new List<Block>();
     }
 
     public virtual void LoadContent() 
@@ -63,7 +69,9 @@ public abstract class Level
         fenceSourceRectangle = new Rectangle(784, 198, 114, 40);
         barrelSourceRectangle = new Rectangle(484, 244, 40, 44);
 
-        alice = new Alice(aliceTexture, attackBubbleTexture, new KeyboardReader(), new MouseReader(), scoreFont);
+        List<Block> allBlocks = GetAllBlocks();
+
+        alice = new Alice(aliceTexture, attackBubbleTexture, new KeyboardReader(), new MouseReader(), scoreFont, allBlocks);
         alice.HeartTexture = heartTexture;
 
         var itemFactory = new ItemFactory(itemTexture);
@@ -180,5 +188,21 @@ public abstract class Level
         Rectangle collectibleRectangle = new Rectangle((int)collectible.Position.X, (int)collectible.Position.Y, collectible.Width, collectible.Height);
 
         return playerRectangle.Intersects(collectibleRectangle);
+    }
+
+    //list of blocks for collisions
+    protected virtual List<Block> GetAllBlocks()
+    {
+        List<Block> allBlocks = new List<Block>();
+        if (gameBoard != null)
+        {
+            allBlocks.AddRange(gameBoard);
+        }
+
+        if (detailBoard != null)
+        {
+            allBlocks.AddRange(detailBoard);
+        }
+        return allBlocks;
     }
 }

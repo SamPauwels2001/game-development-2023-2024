@@ -25,9 +25,9 @@ public abstract class Block : IGameObject
         spriteBatch.Draw(Texture, BoundingBox, SourceRectangle, Color.White);
     }
 
-    public bool CheckCollision(Rectangle aliceBoundingBox)
+    public bool CheckCollision(Rectangle entityBoundingBox)
     {
-        if (!Passable && BoundingBox.Intersects(aliceBoundingBox))
+        if (!Passable && BoundingBox.Intersects(entityBoundingBox))
         {
             // Collision detected
             return true;

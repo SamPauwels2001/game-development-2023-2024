@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Content;
 
 public class Level2 : Level
 {
-    private Block[,] gameBoard;
+    private new Block[,] gameBoard;
 
     public Level2(Game1 game, SpriteBatch spriteBatch, ContentManager content)
         : base(game, spriteBatch, content) { }

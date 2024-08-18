@@ -53,7 +53,7 @@ namespace GameDevProject
 
         private SpriteFont font;
 
-        public Alice(Texture2D texture, Texture2D attackTexture, IInputReader keyboardReader, IInputReader mouseReader, SpriteFont font)
+        public Alice(Texture2D texture, Texture2D attackTexture, IInputReader keyboardReader, IInputReader mouseReader, SpriteFont font, List<Block> blocks)
         {
             aliceTexture = texture;
             projectileAttackTexture = attackTexture;
@@ -88,7 +88,7 @@ namespace GameDevProject
 
             _attackFactory = new AliceAttackFactory();
             attackManager = new AttackManager();
-            movementManager = new MovementManager();
+            movementManager = new MovementManager(blocks);
         }
 
         public void Update(GameTime gameTime)
@@ -118,6 +118,14 @@ namespace GameDevProject
                 MathHelper.Clamp(Position.X, 0, screenWidth - aliceAnimation.CurrentFrame.SourceRectangle.Width),
                 MathHelper.Clamp(Position.Y, 0, screenHeight - aliceAnimation.CurrentFrame.SourceRectangle.Height)
             );
+
+            /*foreach (var block in blocks)
+            {
+                if (block.CheckCollision(new Rectangle((int)Position.X, (int)Position.Y, Width, Height)))
+                {
+                    //handle collision
+                }
+            }*/
 
             aliceAnimation.Update(gameTime);
             Move();

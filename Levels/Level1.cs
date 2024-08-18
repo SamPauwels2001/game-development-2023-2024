@@ -6,8 +6,8 @@ using Microsoft.Xna.Framework.Content;
 
 public class Level1 : Level
 {
-    private Block[,] gameBoard;
-    private Block[,] detailBoard;
+    private new Block[,] gameBoard;
+    private new Block[,] detailBoard;
 
     public Level1(Game1 game, SpriteBatch spriteBatch, ContentManager content) 
         : base(game, spriteBatch, content) { }
@@ -85,7 +85,6 @@ public class Level1 : Level
         AddDetailBlock("FLOWER", 1, 13, 26, 26);
         AddDetailBlock("FLOWER", 11, 16, 26, 26);
 
-
         AddDetailBlock("FENCE", 10, 15, 114, 40);
         AddDetailBlock("FENCE", 15, 10, 114, 40);
     }
@@ -156,4 +155,5 @@ public class Level1 : Level
             default: return grassSourceRectangle; // Default grass
         }
     }
+
 }

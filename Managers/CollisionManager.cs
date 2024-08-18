@@ -22,5 +22,20 @@ namespace GameDevProject.Managers
                 }
             }
         }
+
+        public static bool CheckBlockCollisions(IMovable movable, List<Block> blocks)
+        {
+            Rectangle movableRect = new Rectangle((int)movable.Position.X, (int)movable.Position.Y, movable.Width, movable.Height);
+
+            foreach (var block in blocks)
+            {
+                if (!block.Passable && block.CheckCollision(movableRect))
+                {
+                    return true; // Collision detected
+                }
+            }
+
+            return false;
+        }
     }
 }
