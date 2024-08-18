@@ -26,6 +26,7 @@ public abstract class Level
 
     protected Texture2D tileSet;
     protected Rectangle grassSourceRectangle;
+    protected Rectangle sandSourceRectangle;
     protected Rectangle bushSourceRectangle;
     protected Rectangle flowerSourceRectangle;
     protected Rectangle rockSourceRectangle;
@@ -55,6 +56,7 @@ public abstract class Level
 
         tileSet = content.Load<Texture2D>("TileSet1");
         grassSourceRectangle = new Rectangle(162, 161, 64, 64);
+        sandSourceRectangle = new Rectangle(192, 240, 48, 48);
         bushSourceRectangle = new Rectangle(434, 150, 42, 38);
         flowerSourceRectangle = new Rectangle(300, 196, 26, 26);
         rockSourceRectangle = new Rectangle(434, 202, 44, 34);
