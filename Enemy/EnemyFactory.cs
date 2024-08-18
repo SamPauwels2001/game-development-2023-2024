@@ -28,7 +28,7 @@ public class EnemyFactory
 
     public Enemy CreateMoveCloserEnemy(Vector2 position, Texture2D projectileTexture)
     {
-        return new Enemy(enemyTexture, new StayAwayStrategy(), projectileTexture, itemFactory, itemDropCallback)
+        return new Enemy(enemyTexture, new MoveCloserStrategy(), projectileTexture, itemFactory, itemDropCallback)
         {
             Position = position,
             Speed = 175f
@@ -37,7 +37,7 @@ public class EnemyFactory
 
     public Enemy CreateErraticEnemy(Vector2 position, Texture2D projectileTexture)
     {
-        return new Enemy(enemyTexture, new StayAwayStrategy(), projectileTexture, itemFactory, itemDropCallback)
+        return new Enemy(enemyTexture, new ErraticMovementStrategy(), projectileTexture, itemFactory, itemDropCallback)
         {
             Position = position,
             Speed = 350f
