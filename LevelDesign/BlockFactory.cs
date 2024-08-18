@@ -4,24 +4,24 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class BlockFactory
 {
-    //public static Block CreateBlock(
-    /*string type, int x, int y, GraphicsDevice graphics)
+    public static Block CreateBlock(string type, int x, int y, int width, int height, Texture2D texture)
     {
-        Block newBlock = null;
-        type = type.ToUpper();
-        if (type == "GRASS")
+        switch (type.ToUpper())
         {
-            newBlock = new GrassBlock(x, y, graphics);
+            case "GRASS":
+                return new GrassBlock(x, y, width, height, texture);
+            case "FLOWER":
+                return new FlowerBlock(x, y, width, height, texture);
+            case "BUSH":
+                return new BushBlock(x, y, width, height, texture);
+            case "ROCK":
+                return new RockBlock(x, y, width, height, texture);
+            case "FENCE":
+                return new FenceBlock(x, y, width, height, texture);
+            case "BARREL":
+                return new BarrelBlock(x, y, width, height, texture);
+            default:
+                throw new ArgumentException("Invalid block type");
         }
-        /*
-        if (type == "TRAP")
-        {
-            newBlock = new TrapBlock(x, y, graphics);
-        }
-        if (type == "SLIME")
-        {
-            newBlock = new SlimeBlock(x, y, graphics);
-        }*/
-        //return newBlock;
-    //}
+    }
 }
