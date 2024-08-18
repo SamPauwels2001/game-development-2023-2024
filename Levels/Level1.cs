@@ -51,6 +51,8 @@ public class Level1 : Level
         AddDetailBlock("FLOWER", 2, 4, 26, 26);
         AddDetailBlock("FLOWER", 5, 5, 26, 26);
 
+        AddDetailBlock("FLOWER", 100, 5, 26, 26);
+
         AddDetailBlock("FENCE", 10, 15, 114, 40);
         AddDetailBlock("FENCE", 15, 10, 114, 40);
     }
@@ -97,12 +99,15 @@ public class Level1 : Level
         // Unload level-specific content
     }
 
-    private void AddDetailBlock(string type, int x, int y, int tileWidth, int tileHeight)
+    private void AddDetailBlock(string type, int x, int y, int blockWidth, int blockHeight)
     {
         if (x >= 0 && x < gameBoard.GetLength(0) && y >= 0 && y < gameBoard.GetLength(1))
         {
+            int posX = x * 64 + (64 - blockWidth) / 2;
+            int posY = y * 64 + (64 - blockHeight) / 2;
+
             detailBoard[x, y] = BlockFactory.CreateBlock(
-                type, x * tileWidth, y * tileHeight, tileWidth, tileHeight,
+                type, posX, posY, blockWidth, blockHeight,
                 tileSet, GetSourceRectangleForType(type)
             );
         }
