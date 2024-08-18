@@ -3,28 +3,36 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using GameDevProject.Interfaces;
 
-public class Block /*: IGameObject*/
+public abstract class Block : IGameObject
 {
     public Rectangle BoundingBox { get; set; }
     public bool Passable { get; set; }
     public Texture2D Texture { get; set; }
     //public CollideWithEvent CollideWithEvent { get; set; }
 
-    public Block(int x, int y, GraphicsDevice graphics)
+    public Block(int x, int y, int width, int height, Texture2D texture)
     {
-        BoundingBox = new Rectangle(x, y, 10, 10);
-        Passable = false;
-        Texture = new Texture2D(graphics, 1, 1);
+        BoundingBox = new Rectangle(x, y, width, height);
+        Passable = true;
+        this.Texture = texture;
         //CollideWithEvent = new NoEvent();
     }
+
+    public abstract void Update(GameTime gameTime);
+
     public void Draw(SpriteBatch spriteBatch)
     {
-        //spriteBatch.Draw(Texture, BoundingBox);
+        spriteBatch.Draw(Texture, BoundingBox, Color.White);
     }
-    //public virtual void IsCollidedWithEvent
-    /*(Character collider)
+
+    public bool CheckCollision(Rectangle aliceBoundingBox)
     {
-        CollideWithEvent.Execute();
-    }*/
+        if (!Passable && BoundingBox.Intersects(aliceBoundingBox))
+        {
+            // Collision detected
+            return true;
+        }
+        return false;
+    }
 }
 

@@ -9,9 +9,9 @@ public class BlockFactory
     {
         Block newBlock = null;
         type = type.ToUpper();
-        if (type == "NORMAL")
+        if (type == "GRASS")
         {
-            newBlock = new Block(x, y, graphics);
+            newGrassBlock = new Block(x, y, graphics);
         }
         /*
         if (type == "TRAP")
