@@ -88,6 +88,20 @@ public abstract class Level
         alice.Update(gameTime);
         alice.UpdateAliceCollisions(gameTime, enemies);
 
+        if (alice.Lives <= 0)
+        {
+            game.currentGameState = GameState.GameOver;
+            game.LoadGameOverScreen(false);
+            return;
+        }
+
+        if (alice.PlayerScore.CurrentScore >= 1000)
+        {
+            game.currentGameState = GameState.GameOver;
+            game.LoadGameOverScreen(true);
+            return;
+        }
+
         var powerUp = powerUpSpawner.TrySpawnPowerUp();
         if (powerUp != null)
         {
