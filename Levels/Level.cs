@@ -18,11 +18,15 @@ public abstract class Level
     protected List<IPowerUp> powerUps;
     protected PowerUpSpawner powerUpSpawner;
 
+    protected Texture2D aliceTexture;
+    protected Texture2D attackBubbleTexture;
+    protected Texture2D heartTexture;
+
     private List<Enemy> enemies;
     private EnemySpawner enemySpawner;
     private List<IItem> droppedItems;
 
-    private SpriteFont scoreFont;
+    protected SpriteFont scoreFont;
 
     protected Texture2D tileSet;
     protected Rectangle grassSourceRectangle;
@@ -49,10 +53,10 @@ public abstract class Level
 
     public virtual void LoadContent() 
     {
-        var aliceTexture = content.Load<Texture2D>("AliceSprite");
-        var attackBubbleTexture = content.Load<Texture2D>("AttackBubble");
+        aliceTexture = content.Load<Texture2D>("AliceSprite");
+        attackBubbleTexture = content.Load<Texture2D>("AttackBubble");
         var enemyProjectileTexture = content.Load<Texture2D>("EnemyProjectile");
-        var heartTexture = content.Load<Texture2D>("Heart");
+        heartTexture = content.Load<Texture2D>("Heart");
         var itemTexture = content.Load<Texture2D>("ItemsSprite");
 
         scoreFont = content.Load<SpriteFont>("Score");
@@ -200,25 +204,29 @@ public abstract class Level
     }
 
     //list of blocks for collisions
-    protected virtual List<Block> GetAllBlocks()
+    protected List<Block> GetAllBlocks()
     {
         List<Block> allBlocks = new List<Block>();
 
         if (gameBoard != null)
         {
-            // Iterate over the gameBoard 2D array
             foreach (var block in gameBoard)
             {
-                allBlocks.Add(block);
+                if (block != null)
+                {
+                    allBlocks.Add(block);
+                }
             }
         }
 
         if (detailBoard != null)
         {
-            // Iterate over the detailBoard 2D array
             foreach (var block in detailBoard)
             {
-                allBlocks.Add(block);
+                if (block != null)
+                {
+                    allBlocks.Add(block);
+                }
             }
         }
 

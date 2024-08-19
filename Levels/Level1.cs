@@ -7,8 +7,8 @@ using System.Collections.Generic;
 
 public class Level1 : Level
 {
-    private new Block[,] gameBoard;
-    private new Block[,] detailBoard;
+    private Block[,] gameBoard;
+    private Block[,] detailBoard;
 
     public Level1(Game1 game, SpriteBatch spriteBatch, ContentManager content) 
         : base(game, spriteBatch, content) 
@@ -46,6 +46,11 @@ public class Level1 : Level
         }
 
         PlaceDetailBlocks();
+
+        //After placing blocks, update Alice's block list
+        List<Block> allBlocks = GetAllBlocks();
+        alice = new Alice(base.aliceTexture, base.attackBubbleTexture, new KeyboardReader(), new MouseReader(), scoreFont, allBlocks);
+        alice.HeartTexture = base.heartTexture;
     }
 
     private void PlaceDetailBlocks()
