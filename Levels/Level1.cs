@@ -48,9 +48,9 @@ public class Level1 : Level
         PlaceDetailBlocks();
 
         //After placing blocks, update Alice's block list
-        List<Block> allBlocks = GetAllBlocks();
-        alice = new Alice(base.aliceTexture, base.attackBubbleTexture, new KeyboardReader(), new MouseReader(), scoreFont, allBlocks);
-        alice.HeartTexture = base.heartTexture;
+        //List<Block> allBlocks = GetAllBlocks();
+        //alice = new Alice(base.aliceTexture, base.attackBubbleTexture, new KeyboardReader(), new MouseReader(), scoreFont, allBlocks);
+        //alice.HeartTexture = base.heartTexture;
     }
 
     private void PlaceDetailBlocks()
