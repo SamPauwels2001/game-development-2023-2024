@@ -52,7 +52,7 @@ public class Level1 : Level
     {
         AddDetailBlock("FLOWER", 2, 3, 26, 26);
         AddDetailBlock("FLOWER", 3, 3, 26, 26);
-        AddDetailBlock("FLOWER", 2, 4, 26, 26);
+        AddDetailBlock("FLOWER", 0, 4, 26, 26);
         AddDetailBlock("FLOWER", 5, 5, 26, 26);
         AddDetailBlock("FLOWER", 1, 1, 26, 26);
         AddDetailBlock("FLOWER", 12, 15, 26, 26);
@@ -91,6 +91,22 @@ public class Level1 : Level
 
         AddDetailBlock("FENCE", 10, 15, 114, 40);
         AddDetailBlock("FENCE", 15, 10, 114, 40);
+
+        AddDetailBlock("ROCK", 1, 1, 44, 34);
+        AddDetailBlock("ROCK", 15, 15, 44, 34);
+        AddDetailBlock("ROCK", 16, 11, 44, 34);
+
+        AddDetailBlock("BUSH", 1, 2, 44, 34);
+        AddDetailBlock("BUSH", 14, 16, 44, 34);
+        AddDetailBlock("BUSH", 0, 10, 44, 34);
+        AddDetailBlock("BUSH", 5, 9, 44, 34);
+        AddDetailBlock("BUSH", 17, 6, 44, 34);
+        AddDetailBlock("BUSH", 6, 14, 44, 34);
+        AddDetailBlock("BUSH", 13, 1, 44, 34);
+        AddDetailBlock("BUSH", 20, 1, 44, 34);
+        AddDetailBlock("BUSH", 26, 8, 44, 34);
+        AddDetailBlock("BUSH", 23, 4, 44, 34);
+        AddDetailBlock("BUSH", 27, 15, 44, 34);
     }
 
     public override void Update(GameTime gameTime)
@@ -151,6 +167,8 @@ public class Level1 : Level
         {
             case "FLOWER": return flowerSourceRectangle;
             case "FENCE": return fenceSourceRectangle;
+            case "ROCK": return rockSourceRectangle;
+            case "BUSH": return bushSourceRectangle;
 
             default: return grassSourceRectangle; // Default grass
         }
