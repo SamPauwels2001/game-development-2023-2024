@@ -165,9 +165,9 @@ namespace GameDevProject
 
             if (isPowerUpMenuVisible)
             {
-                _spriteBatch.Begin();
+                
                 _spriteBatch.Draw(powerUpMenuTexture, new Vector2(ScreenWidth - powerUpMenuTexture.Width, ScreenHeight - powerUpMenuTexture.Height), Color.White);
-                _spriteBatch.End();
+                
             }
 
             _spriteBatch.End();
