@@ -160,7 +160,6 @@ public abstract class Level
 
     public virtual void Draw(GameTime gameTime) 
     {
-        spriteBatch.Begin();
 
         alice.Draw(spriteBatch);
 
@@ -179,7 +178,6 @@ public abstract class Level
             item.Draw(spriteBatch);
         }
 
-        spriteBatch.End();
     }
 
     public virtual void UnloadContent() 

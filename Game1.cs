@@ -14,7 +14,7 @@ namespace GameDevProject
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private GameState currentGameState;
+        public GameState currentGameState;
         private Level currentLevel;
         private MainScreen mainMenu;
         private List<Button> _buttons;
@@ -25,6 +25,10 @@ namespace GameDevProject
 
         public static int ScreenWidth { get; private set; }
         public static int ScreenHeight { get; private set; }
+
+        private Texture2D gameOverTexture;
+        private Texture2D victoryTexture;
+        private bool isVictory;
 
         public Game1()
         {
@@ -106,6 +110,14 @@ namespace GameDevProject
                     mainMenu.Update(gameTime, mouseState);
                     break;
 
+                case GameState.GameOver:
+                    if (mouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        currentGameState = GameState.MainMenu;
+                        LoadMainMenu();
+                    }
+                    break;
+
                 default:
                     currentLevel?.Update(gameTime);
                     break;
@@ -127,10 +139,23 @@ namespace GameDevProject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            _spriteBatch.Begin();
+
             switch (currentGameState)
             {
                 case GameState.MainMenu:
                     mainMenu.Draw(_spriteBatch);
+                    break;
+
+                case GameState.GameOver:
+                    if (isVictory)
+                    {
+                        _spriteBatch.Draw(victoryTexture, Vector2.Zero, Color.White);
+                    }
+                    else
+                    {
+                        _spriteBatch.Draw(gameOverTexture, Vector2.Zero, Color.White);
+                    }
                     break;
 
                 default:
@@ -144,6 +169,8 @@ namespace GameDevProject
                 _spriteBatch.Draw(powerUpMenuTexture, new Vector2(ScreenWidth - powerUpMenuTexture.Width, ScreenHeight - powerUpMenuTexture.Height), Color.White);
                 _spriteBatch.End();
             }
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
@@ -171,6 +198,20 @@ namespace GameDevProject
             }
 
             currentLevel?.LoadContent();
+        }
+
+        public void LoadGameOverScreen(bool victory)
+        {
+            isVictory = victory;
+
+            if (victory)
+            {
+                victoryTexture = Content.Load<Texture2D>("Victory");
+            }
+            else
+            {
+                gameOverTexture = Content.Load<Texture2D>("GameOver");
+            }
         }
 
         protected override void UnloadContent()

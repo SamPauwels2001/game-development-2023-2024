@@ -15,12 +15,14 @@
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/cake.png</File>
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/Card.png</File>
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/EnemyProjectile.png</File>
+    <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/GameOver.png</File>
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/Heart.png</File>
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/istockphoto-1223562152-1024x1024.jpg</File>
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/ItemsSprite.png</File>
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/PowerUpMenu.png</File>
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/Score.spritefont</File>
     <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/StarRealmsCozyForestPack48x48.png</File>
+    <File>C:/Users/sampa/OneDrive/E-mailbijlagen/Documents/#School/Jaar2/Game Dev/GameDevPROJECT/GameDevProject/Content/Victory.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
@@ -35,10 +37,12 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File>background.jpg</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
-    <File>TileSet1.png</File>
+    <File>TileSet.png</File>
+    <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

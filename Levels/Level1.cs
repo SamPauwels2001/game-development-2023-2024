@@ -101,7 +101,6 @@ public class Level1 : Level
 
     public override void Draw(GameTime gameTime)
     {
-        spriteBatch.Begin();
 
         for (int x = 0; x < gameBoard.GetLength(0); x++)
         {
@@ -121,9 +120,6 @@ public class Level1 : Level
                 }
             }
         }
-
-
-        spriteBatch.End();
 
         base.Draw(gameTime);
 
